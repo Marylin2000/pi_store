@@ -4,6 +4,7 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.jpg';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -56,20 +57,8 @@ const Header = () => {
       {/* Search Bar (below logo) */}
       <div className="p-2 bg-gray-100">
         <div className="flex items-center bg-white rounded-md px-3 py-2 max-w-2xl mx-auto">
-          <FaSearch className="text-gray-500 mr-2" />
-          <input
-            type="text"
-            placeholder="Search products, brands and categories"
-            className="w-full outline-none text-sm"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button 
-            onClick={handleSearch} // Trigger search on button click
-            className="bg-[#562a77] text-white px-4 py-2 rounded-md ml-2 hover:bg-orange-600"
-          >
-            SEARCH
-          </button>
+         
+          <SearchBar />
         </div>
       </div>
 

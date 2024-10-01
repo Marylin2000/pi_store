@@ -132,6 +132,11 @@ const ProductPage = () => {
 
         <h1 className="text-xl font-bold mt-4">{product.title}</h1>
         <p className="text-sm text-gray-500">Brand: {product.brand}</p>
+        <div>
+            <p>
+              {product.description}
+            </p>
+        </div>
 
         {/* Price Section */}
         <div className="mt-4">
@@ -201,6 +206,7 @@ const ProductPage = () => {
             Delivery Fees {deliveryFee} Pi | Arriving between 08 and 10 October. Order within 6hrs 25mins
           </span>
         </div>
+        
 
         {/* Return Policy */}
         <div className="mt-6">

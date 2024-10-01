@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProducts } from '../services/api';
+import { fetchAllProducts, fetchProducts } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import CategoryProducts from '../components/CategoriesProduct';
 import MoreProducts from '../components/MoreProducts';
@@ -12,6 +12,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true); // Loader state
   const [error, setError] = useState(null); // Error state
+  const [search, setSearch] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -20,7 +21,9 @@ const Home = () => {
 
       try {
         const data = await fetchProducts();
+        const searchable = await fetchAllProducts()
         setProducts(data);
+        setSearch(searchable)
       } catch (error) {
         setError('Failed to load products. Please check your network connection.'); // Set error message
       } finally {
@@ -62,19 +65,19 @@ const Home = () => {
     );
   }
 
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteredProducts = search.filter((product) =>
+  //   product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   return (
     <div className="container mx-auto p-4">
       {/* Product Grid Layout */}
       <CategoryProducts category="vehicle" />
-      <div className="grid grid-cols-2 gap-4 mt-4">
+      {/* <div className="grid grid-cols-2 gap-4 mt-4">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
+      </div> */}
       <CategoryProducts category="laptops" />
       <CategoryProducts category="motorcycle" />
       <CategoryProducts category="tablets" />
