@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import CartContext from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import CartContext from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
@@ -22,10 +22,16 @@ const CartPage = () => {
         <>
           <ul className="space-y-4">
             {cart.map((product) => (
-              <li key={product.id} className="flex justify-between items-center border p-4 rounded-lg">
-                <div>
-                  <h2 className="font-semibold">{product.title}</h2>
-                  <p>{product.price} Pi</p>
+              <li
+                key={product.id}
+                className="flex justify-between items-center border p-4 rounded-lg"
+              >
+                <div className=" flex gap-2 ">
+                  <img src={product.thumbnail} alt="image" width={50} />
+                  <div>
+                    <h1 className="font-semibold ">{product.title}</h1>
+                    <p>{Math.round(product.price *0.2)} Pi</p>
+                  </div>
                 </div>
                 <button
                   onClick={() => handleRemove(product.id)}

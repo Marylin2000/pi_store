@@ -45,7 +45,7 @@ const CategoryProducts = ({ category }) => {
               className=" object-cover mb-4 rounded-lg" 
             />
             <h3 className="text-xs  font-medium">{product.title}</h3>
-            <p className="text-gray-600">{product.price} Pi</p>
+            <p className="text-gray-600">{Math.round(product.price * 0.2)} Pi</p>
           </Link>
         ))}
       </div>

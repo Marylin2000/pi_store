@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { FaSearch, FaShoppingCart, FaQuestionCircle, FaBars } from 'react-icons/fa';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.jpg';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate(); // Add navigate for page navigation
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleSearch = () => {
+    if (searchTerm) {
+      navigate(`/search?query=${searchTerm}`); // Navigate to search results page with query parameter
+    }
   };
 
   return (
@@ -22,8 +29,8 @@ const Header = () => {
             <FaBars size={24} />
           </button>
           <Link to={"/"} className='flex items-center flex-col'>
-          <img src={logo} alt="Pi Store" width={40} />
-          <p className='font-semibold text-[#61298b]'>Pi Sore</p>
+            <img src={logo} alt="Pi Store" width={40} />
+            <p className='font-semibold text-[#61298b]'>Pi Store</p>
           </Link>
         </div>
 
@@ -57,40 +64,39 @@ const Header = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="bg-[#562a77] text-white px-4 py-2 rounded-md ml-2 hover:bg-orange-600">
+          <button 
+            onClick={handleSearch} // Trigger search on button click
+            className="bg-[#562a77] text-white px-4 py-2 rounded-md ml-2 hover:bg-orange-600"
+          >
             SEARCH
           </button>
         </div>
       </div>
 
       {/* Sidebar (Menu) */}
-      <div onClick={toggleSidebar} className={`fixed top-0 left-0 h-full w-full bg-transparent shadow-lg transform ${
+      <div onClick={toggleSidebar} className={`fixed top-0 left-0 h-full w-full bg-white/40 shadow-lg  backdrop-blur-[1px] transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 z-50`}>
-
-      <div className='bg-white h-full w-[60%]'
-      
-        >
-        <button
-          onClick={toggleSidebar}
-          className="text-black text-lg p-4 focus:outline-none"
+        <div className='bg-white h-full w-[60%]'>
+          <button
+            onClick={toggleSidebar}
+            className="text-black text-lg p-4 focus:outline-none"
           >
-          Close
-        </button>
-        
-        {/* Add sidebar items here */}
-        <nav >
-          <ul>
-            <li className="p-4 border-b">Home</li>
-            <li className="p-4 border-b">
-      <Link to="/categories">Categories</Link>
-    </li>
-            <li className="p-4 border-b">Deals</li>
-            <li className="p-4 border-b">Contact Us</li>
-          </ul>
-        </nav>
+            Close
+          </button>
+          {/* Add sidebar items here */}
+          <nav>
+            <ul>
+              <li className="p-4 border-b">Home</li>
+              <li className="p-4 border-b">
+                <Link to="/categories">Categories</Link>
+              </li>
+              <li className="p-4 border-b">Deals</li>
+              <li className="p-4 border-b">Contact Us</li>
+            </ul>
+          </nav>
+        </div>
       </div>
-          </div>
     </header>
   );
 };

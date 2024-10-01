@@ -5,7 +5,7 @@ import AddToCart from './AddToCart';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="p-4 border rounded-lg shadow hover:shadow-lg transition-shadow">
+    <div className="p-4 border rounded-lg flex flex-col items-center shadow hover:shadow-lg transition-shadow">
       <Link to={`/product/${product.id}`}>
         {/* Discount Badge */}
         {/* {product.discount && (
@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         <img
           src={product.thumbnail}
           alt={product.title}
-          className="w-full h-24 object-cover rounded-lg"
+          className="w h-24 object-contain rounded-lg"
         />
       </Link>
 
@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
       <h2 className="mt-2 text-xs ">{product.title}</h2>
 
       {/* Product Price */}
-      <p className="mt-1 text-gray-600 text-">{Math.round(product.price)} Pi</p>
+      <p className="mt-1 text-gray-600 text-">{Math.round(product.price*0.2)} Pi</p>
 
       {/* Stock Left Information */}
       <div className="flex items-center mt-1">

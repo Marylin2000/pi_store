@@ -15,6 +15,7 @@ import CategoryProductsPage from "./pages/CategoryProductPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import CartPage from "./pages/Cart";
 import PaymentPage from "./pages/PaymentPage";
+import SearchResults from "./components/SearchResult";
 
 const App = () => {
   return (
@@ -32,6 +33,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/search" element={<SearchResults />} />
+
             <Route path="/category/:category/products" element={<CategoryProductsPage />} /> {/* New Route */}
 
 
