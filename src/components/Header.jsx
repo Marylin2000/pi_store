@@ -1,72 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { FaSearch, FaShoppingCart, FaUser, FaQuestionCircle } from 'react-icons/fa';
-import { MdOutlineShoppingCart, MdOutlineVerifiedUser } from 'react-icons/md';
+import React, { useState } from 'react';
+import { FaSearch, FaShoppingCart, FaQuestionCircle, FaBars } from 'react-icons/fa';
+import { MdOutlineShoppingCart } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa6';
-import logo from '../assets/images/logo.jpg'
-import { fetchProducts } from '../services/api';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.jpg';
 
 const Header = () => {
-    const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // Search term state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
-    };
-    getProducts();
-  }, []);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-  // Filter products based on the search term
-  const filteredProducts = products.filter(product =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
   return (
-    <header className="flex justify-between items-center p-2 px-5  bg-white shadow-md">
-      {/* Left Section (Logo) */}
-      <div className="flex items-center space-x-2">
-        <img src={logo}  alt="Pi Store" width={80}  />
+    <header className="bg-white shadow-md">
+      <div className="flex justify-between items-center p-4">
+        {/* Left Section (Menu and Logo) */}
+        <div className="flex items-center">
+          <button onClick={toggleSidebar} className="mr-4">
+            <FaBars size={24} />
+          </button>
+          <Link to={"/"}>
+          <img src={logo} alt="Pi Store" width={80} />
+          </Link>
+        </div>
+
+        {/* Right Section (User, Help, Cart) */}
+        <div className="flex items-center space-x-6">
+          <Link to="/user">
+            <div className="flex items-center space-x-2">
+              <FaRegUser className="text-xl" />
+              <span className="hidden lg:block">Hi, Barry</span>
+            </div>
+          </Link>
+          <div className="flex items-center space-x-1 cursor-pointer">
+            <FaQuestionCircle className="text-xl" />
+            <span className="hidden lg:block">Help</span>
+          </div>
+          <Link to="/cart" className="relative">
+            <MdOutlineShoppingCart size={25} />
+            <span className="absolute top-[-4px] right-[-4px] bg-orange-500 text-white text-xs rounded-full px-1">1</span>
+          </Link>
+        </div>
       </div>
 
-      {/* Middle Section (Search Bar) */}
-      <div className="flex items-center bg-gray-100 rounded-md px-2 py-1 w-full max-w-lg lg:max-w-xl">
-        <FaSearch className="text-gray-500 mr-2" />
-        <input
-          type="text"
-          placeholder="Search products, brands and categories"
-          className="bg-transparent outline-none w-full text-sm md:text-base"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="bg-[#562a77] text-white px-4 py-2 rounded-md ml-2 hover:bg-orange-600">
-          SEARCH
+      {/* Search Bar (below logo) */}
+      <div className="p-2 bg-gray-100">
+        <div className="flex items-center bg-white rounded-md px-3 py-2 max-w-2xl mx-auto">
+          <FaSearch className="text-gray-500 mr-2" />
+          <input
+            type="text"
+            placeholder="Search products, brands and categories"
+            className="w-full outline-none text-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="bg-[#562a77] text-white px-4 py-2 rounded-md ml-2 hover:bg-orange-600">
+            SEARCH
+          </button>
+        </div>
+      </div>
+
+      {/* Sidebar (Menu) */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } transition-transform duration-300 z-50`}
+      >
+        <button
+          onClick={toggleSidebar}
+          className="text-black text-lg p-4 focus:outline-none"
+        >
+          Close
         </button>
-      </div>
-
-      {/* Right Section (User, Help, Cart) */}
-      <div className="flex items-center space-x-6">
-      <Link to={"/user"} >
-        {/* User Icon */}
-        <div className="flex items-center space-x-2">
-          <FaRegUser className="text-xl" />
-          <span className="hidden lg:block">Hi, Barry</span>
-          <span className="text-sm hidden lg:block cursor-pointer">▼</span>
-        </div>
-      </Link>
-
-        {/* Help Section */}
-        <div className="flex items-center space-x-1 cursor-pointer">
-          <FaQuestionCircle className="text-xl" />
-          <span className="hidden lg:block">Help</span>
-          <span className="text-sm hidden lg:block cursor-pointer">▼</span>
-        </div>
-
-        {/* Cart Icon */}
-        <Link to={"/cart"} className="relative cursor-pointer">
-          <MdOutlineShoppingCart size={25} className="text-2xl" />
-          <span className="absolute top-[-4px] right-[-4px] bg-orange-500 text-white text-xs rounded-full px-1">1</span>
-        </Link>
+        {/* Add sidebar items here */}
+        <nav>
+          <ul>
+            <li className="p-4 border-b">Home</li>
+            <li className="p-4 border-b">Categories</li>
+            <li className="p-4 border-b">Deals</li>
+            <li className="p-4 border-b">Contact Us</li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

@@ -21,3 +21,16 @@ export const fetchProductById = async (id) => {
     throw error;
   }
 };
+
+// src/services/api.js
+export const fetchProductsByCategory = async (category) => {
+  try {
+    const response = await fetch(`https://dummyjson.com/products/category/${category}`);
+    const data = await response.json();
+    return data.products; // Return the array of products
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    return [];
+  }
+};
+

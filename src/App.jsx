@@ -11,6 +11,7 @@ import User from "./pages/User";
 
 import Faq from "./components/Faq";
 import { Toaster } from "react-hot-toast";
+import CategoryProductsPage from "./pages/CategoryProductPage";
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/category/:category/products" element={<CategoryProductsPage />} /> {/* New Route */}
+
 
             <Route path="/cart" element={<Cart />} />
             <Route path="/product/:id" element={<ProductPage />} />
