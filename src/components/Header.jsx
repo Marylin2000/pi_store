@@ -21,8 +21,9 @@ const Header = () => {
           <button onClick={toggleSidebar} className="mr-4">
             <FaBars size={24} />
           </button>
-          <Link to={"/"}>
-          <img src={logo} alt="Pi Store" width={80} />
+          <Link to={"/"} className='flex items-center flex-col'>
+          <img src={logo} alt="Pi Store" width={40} />
+          <p className='font-semibold text-[#61298b]'>Pi Sore</p>
           </Link>
         </div>
 
@@ -63,27 +64,33 @@ const Header = () => {
       </div>
 
       {/* Sidebar (Menu) */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform ${
+      <div onClick={toggleSidebar} className={`fixed top-0 left-0 h-full w-full bg-transparent shadow-lg transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform duration-300 z-50`}
-      >
+        } transition-transform duration-300 z-50`}>
+
+      <div className='bg-white h-full w-[60%]'
+      
+        >
         <button
           onClick={toggleSidebar}
           className="text-black text-lg p-4 focus:outline-none"
-        >
+          >
           Close
         </button>
+        
         {/* Add sidebar items here */}
-        <nav>
+        <nav >
           <ul>
             <li className="p-4 border-b">Home</li>
-            <li className="p-4 border-b">Categories</li>
+            <li className="p-4 border-b">
+      <Link to="/categories">Categories</Link>
+    </li>
             <li className="p-4 border-b">Deals</li>
             <li className="p-4 border-b">Contact Us</li>
           </ul>
         </nav>
       </div>
+          </div>
     </header>
   );
 };

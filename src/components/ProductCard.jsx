@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
+import AddToCart from './AddToCart';
 
 const ProductCard = ({ product }) => {
   return (
@@ -35,6 +36,7 @@ const ProductCard = ({ product }) => {
           </p>
         )}
       </div>
+      <AddToCart product={product} />
     </div>
   );
 };

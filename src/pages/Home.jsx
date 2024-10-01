@@ -24,7 +24,7 @@ const Home = () => {
     <div className="container mx-auto p-4">
       {/* Product Grid Layout */}
       <CategoryProducts category="vehicle" />
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-2 gap-4 mt-4">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

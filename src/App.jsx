@@ -12,6 +12,9 @@ import User from "./pages/User";
 import Faq from "./components/Faq";
 import { Toaster } from "react-hot-toast";
 import CategoryProductsPage from "./pages/CategoryProductPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import CartPage from "./pages/Cart";
+import PaymentPage from "./pages/PaymentPage";
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
