@@ -36,15 +36,15 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="border-2 w-full border-slate-400 h-fit bg-red-200 p-1 mb-10  flex item-center justify-center rounded-full" >
+    <div className="p-1">
+      <div className="border-2 w-full  border-indigo-600 flex item-center justify-center rounded-full" >
 
       <input
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search for products..."
-        className="w-full p-2 focus:border-none rounded-full"
+        className="w-full p-2  rounded-full"
         />
         </div>
       {loading ? (
@@ -55,9 +55,7 @@ const SearchBar = () => {
             searchResults.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))
-          ) : (
-            <div className="col-span-full text-center text-gray-700">No results found</div>
-          )}
+          ) : ""}
         </div>
       )}
     </div>

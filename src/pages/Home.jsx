@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllProducts, fetchProducts } from '../services/api';
+import { fetchFakeProducts, fetchProducts } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import CategoryProducts from '../components/CategoriesProduct';
 import MoreProducts from '../components/MoreProducts';
 import Loader from '../components/Loader';
+import FakeCard from '../components/FakeCard';
+import FakeProducts from '../components/FakeProducts';
+import FakeCategories from '../components/FakeCategories';
 
 
 
@@ -12,7 +15,6 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true); // Loader state
   const [error, setError] = useState(null); // Error state
-  const [search, setSearch] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,9 +23,9 @@ const Home = () => {
 
       try {
         const data = await fetchProducts();
-        const searchable = await fetchAllProducts()
         setProducts(data);
-        setSearch(searchable)
+ 
+
       } catch (error) {
         setError('Failed to load products. Please check your network connection.'); // Set error message
       } finally {
@@ -93,7 +95,10 @@ const Home = () => {
       <MoreProducts category={"mens-shoes"} />
       <p>Furnitures</p>
       <MoreProducts category={"furniture"} />
-      <p>Grocery</p>
+      <p>More</p>
+      <FakeProducts />
+      <FakeCategories category={"electronics"} />
+
     </div>
   );
 };

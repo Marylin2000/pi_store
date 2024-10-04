@@ -16,6 +16,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import CartPage from "./pages/Cart";
 import PaymentPage from "./pages/PaymentPage";
 import SearchResults from "./components/SearchResult";
+import FakeProductPage from "./pages/FakeProductPage";
 
 const App = () => {
   return (
@@ -40,6 +41,8 @@ const App = () => {
 
             <Route path="/cart" element={<Cart />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/products/:id" element={<FakeProductPage />} />
+
           </Routes>
         </main>
         <Footer />

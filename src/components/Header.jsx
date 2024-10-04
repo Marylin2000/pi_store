@@ -1,28 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaSearch, FaShoppingCart, FaQuestionCircle, FaBars } from 'react-icons/fa';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.jpg';
 import SearchBar from './SearchBar';
+import CartContext from '../context/CartContext';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate(); // Add navigate for page navigation
+  const {cart} = useContext(CartContext)
+  console.log(cart)
+  const user = false
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleSearch = () => {
-    if (searchTerm) {
-      navigate(`/search?query=${searchTerm}`); // Navigate to search results page with query parameter
-    }
-  };
-
   return (
-    <header className="bg-white shadow-md">
+    <main className="bg-white shadow-md w-screen">
       <div className="flex justify-between items-center p-4">
         {/* Left Section (Menu and Logo) */}
         <div className="flex items-center">
@@ -49,14 +47,14 @@ const Header = () => {
           </div>
           <Link to="/cart" className="relative">
             <MdOutlineShoppingCart size={25} />
-            <span className="absolute top-[-4px] right-[-4px] bg-orange-500 text-white text-xs rounded-full px-1">1</span>
+            <span className="absolute top-[-4px] right-[-4px] bg-orange-500 text-white text-xs rounded-full px-1">{ user?cart.length:""}</span>
           </Link>
         </div>
       </div>
 
       {/* Search Bar (below logo) */}
       <div className="p-2 bg-gray-100">
-        <div className="flex items-center bg-white rounded-md px-3 py-2 max-w-2xl mx-auto">
+        <div className="flex items-center bg-white rounded-md px-3 py-2 w-full mx-auto">
          
           <SearchBar />
         </div>
@@ -86,7 +84,7 @@ const Header = () => {
           </nav>
         </div>
       </div>
-    </header>
+    </main>
   );
 };
 

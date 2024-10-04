@@ -34,12 +34,35 @@ export const fetchProductsByCategory = async (category) => {
   }
 };
 
-export const fetchAllProducts = async () => {
+export const fetchFakeProducts = async () => {
   try {
-    const response = await axios.get('https://dummyjson.com/products');
-    return response.data.products;
+    const response = await axios.get('https://fakestoreapi.com/products');
+    return response.data;
   } catch (error) {
     console.error("Error fetching products:", error);
+    
+    throw error;
+  }
+};
+
+export const fetchFakeCategories = async (category) => {
+  try {
+    const response = await axios.get(`https://fakestoreapi.com/products/category/${category}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    
+    throw error;
+  }
+};
+
+
+export const fetchFakeProductById = async (id) => {
+  try {
+    const response = await axios.get(`https://fakestoreapi.com/products/1${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching product with id ${id}:`, error);
     throw error;
   }
 };

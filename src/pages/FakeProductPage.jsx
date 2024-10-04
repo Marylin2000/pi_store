@@ -1,13 +1,14 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchProductById } from '../services/api';
+import { fetchFakeProductById, fetchProductById } from '../services/api';
 import { FaStar, FaTruck, FaHeart, FaCartPlus } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion components
 import AddToCart from '../components/AddToCart';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Loader from '../components/Loader';
 
-const ProductPage = () => {
+const FakeProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [image, setImage] = useState('');
@@ -21,7 +22,7 @@ const ProductPage = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const data = await fetchProductById(id);
+        const data = await fetchFakeProductById(id);
         setProduct(data);
         setImage(data.thumbnail); // Set the initial main image
       } catch (error) {
@@ -86,7 +87,7 @@ const ProductPage = () => {
           <AnimatePresence mode='wait' >
             <motion.img
               key={image} // Key changes when image changes, triggering animation
-              src={image || product.thumbnail} // Fallback to product.thumbnail
+              src={image || product.image} // Fallback to product.thumbnail
               onClick={handleImageClick} // Handle image click
               alt={product.title}
               width={250}
@@ -225,4 +226,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default FakeProductPage;

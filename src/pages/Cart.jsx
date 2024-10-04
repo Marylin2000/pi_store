@@ -25,9 +25,11 @@ const CartPage = () => {
               <li
                 key={product.id}
                 className="flex justify-between items-center border p-4 rounded-lg"
-              >
+                >
                 <div className=" flex gap-2 ">
+                  <Link to={`/product/${product.id}`}> 
                   <img src={product.thumbnail} alt="image" width={50} />
+                </Link>
                   <div>
                     <h1 className="font-semibold ">{product.title}</h1>
                     <p>{Math.round(product.price *0.2)} Pi</p>

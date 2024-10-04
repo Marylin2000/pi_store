@@ -23,7 +23,7 @@ const SearchResults = () => {
   );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-2">
       <h1 className="text-2xl font-bold">Search Results for "{searchTerm}"</h1>
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 mt-4">
@@ -31,9 +31,8 @@ const SearchResults = () => {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      ) : (
-        <p>No products found for "{searchTerm}"</p>
-      )}
+      ) :"" 
+      }
     </div>
   );
 };
