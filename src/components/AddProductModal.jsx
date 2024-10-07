@@ -73,7 +73,7 @@ const AddProductModal = ({ onClose, onAdd }) => {
           </div>
           <div>
             <label htmlFor="description" className="block text-sm">
-              Description *
+              Description 
             </label>
             <textarea
               id="description"

@@ -2,7 +2,7 @@
 import React from 'react';
 import AuthForm from '../components/AuthForm';
 import { auth, googleProvider } from '../firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInWithRedirect(auth, googleProvider);
       console.log('Google login successful');
     } catch (error) {
       console.error('Google login error:', error);
