@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchFakeProducts, fetchProducts } from '../services/api';
-import ProductCard from '../components/ProductCard';
 import CategoryProducts from '../components/CategoriesProduct';
 import MoreProducts from '../components/MoreProducts';
 import Loader from '../components/Loader';
-import FakeCard from '../components/FakeCard';
 import FakeProducts from '../components/FakeProducts';
 import FakeCategories from '../components/FakeCategories';
 

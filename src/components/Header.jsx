@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.jpg';
 import SearchBar from './SearchBar';
 import CartContext from '../context/CartContext';
+import defaultPhoto from '../assets/images/user.png'
+import { useUser } from '../context/UserContext';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -13,7 +15,7 @@ const Header = () => {
   const navigate = useNavigate(); // Add navigate for page navigation
   const {cart} = useContext(CartContext)
   console.log(cart)
-  const user = false
+  const {user} = useUser()
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -36,9 +38,20 @@ const Header = () => {
         {/* Right Section (User, Help, Cart) */}
         <div className="flex items-center space-x-6">
           <Link to="/user">
+          {
+          
+          }
             <div className="flex items-center space-x-2">
-              <FaRegUser className="text-xl" />
-              <span className="hidden lg:block">Hi, Barry</span>
+              <div>
+                {
+                  user? 
+                  <img src={user.photoURL || defaultPhoto} alt="User Avatar" className="rounded-full h-8 w-8" /> 
+                  : 
+                  <FaRegUser className="text-xl" />
+                }
+              </div>
+              
+              <span className="hidden lg:block"></span>
             </div>
           </Link>
           <div className="flex items-center space-x-1 cursor-pointer">
