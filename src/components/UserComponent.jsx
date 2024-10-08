@@ -3,7 +3,6 @@ import { useUser } from "../context/UserContext";
 import { auth } from "../firebase"; // Ensure Firebase is configured properly
 import { updateProfile, updateEmail } from "firebase/auth";
 import { uploadImage } from "../services/uploadImage";
-// import Cart from "./Cart"; // A component for displaying the user's cart items
 
 const UserPage = () => {
   const { user, setUser } = useUser();
@@ -58,7 +57,7 @@ const UserPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 py-12 px-6 flex justify-center">
+    <main className="h-screen w-screen bg-gray-100 py-2 px-2 flex justify-center">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
         <h1 className="text-3xl font-semibold mb-6 text-gray-800">User Profile</h1>
         <div className="flex items-center space-x-4 mb-8">

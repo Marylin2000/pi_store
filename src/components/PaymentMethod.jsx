@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Phrase from './Phrase'
+import QrCode from "../assets/images/Qrcode.jpg"
 
 function PaymentMethod({selectedMethod, modal,setmodal}) {
 
@@ -11,7 +12,7 @@ function PaymentMethod({selectedMethod, modal,setmodal}) {
         <div className="mt-6">
         <h3 className="text-lg font-semibold">QR Code Payment</h3>
         <img
-          src="path/to/your/qrcode-image.png" // Replace with your QR code image path
+          src={QrCode} // Replace with your QR code image path
           alt="QR Code"
           className="mt-2"
           />

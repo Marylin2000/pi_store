@@ -42,13 +42,16 @@ const Header = () => {
           
           }
             <div className="flex items-center space-x-2">
-              <div>
+              <div className='flex items-center justify-center flex-col'>
                 {
                   user? 
                   <img src={user.photoURL || defaultPhoto} alt="User Avatar" className="rounded-full h-8 w-8" /> 
                   : 
                   <FaRegUser className="text-xl" />
                 }
+                <p className='text-xs'>
+                  {user.displayName}
+                </p>
               </div>
               
               <span className="hidden lg:block"></span>

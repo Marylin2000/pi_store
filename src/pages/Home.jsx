@@ -5,6 +5,9 @@ import MoreProducts from '../components/MoreProducts';
 import Loader from '../components/Loader';
 import FakeProducts from '../components/FakeProducts';
 import FakeCategories from '../components/FakeCategories';
+import LocalProducts from '../components/LocalProducts';
+import { Phoneimages } from '../constants/products';
+import Carousel from '../components/Carousel';
 
 
 
@@ -65,24 +68,18 @@ const Home = () => {
     );
   }
 
-  // const filteredProducts = search.filter((product) =>
-  //   product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+
 
   return (
     <div className="container mx-auto p-4">
+      <Carousel images={Phoneimages} interval={2000} />
       {/* Product Grid Layout */}
-      <CategoryProducts category="vehicle" />
-      {/* <div className="grid grid-cols-2 gap-4 mt-4">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div> */}
-      <CategoryProducts category="laptops" />
-      <CategoryProducts category="motorcycle" />
-      <CategoryProducts category="tablets" />
-      <CategoryProducts category="mens-watches" />
-      <CategoryProducts category="vehicle" />
+      <CategoryProducts category ="vehicle" />
+      <CategoryProducts category ="laptops" />
+      <CategoryProducts category ="motorcycle" />
+      <CategoryProducts category ="tablets" />
+      <CategoryProducts category ="mens-watches" />
+      <CategoryProducts category ="vehicle" />
       <p>Decorations for your Home</p>
       <MoreProducts category={"home-decoration"} />
       <p>Skin care</p>
@@ -96,6 +93,7 @@ const Home = () => {
       <p>More</p>
       <FakeProducts />
       <FakeCategories category={"electronics"} />
+      <LocalProducts />
 
     </div>
   );

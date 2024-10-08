@@ -59,7 +59,7 @@ export const fetchFakeCategories = async (category) => {
 
 export const fetchFakeProductById = async (id) => {
   try {
-    const response = await axios.get(`https://fakestoreapi.com/products/1${id}`);
+    const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching product with id ${id}:`, error);

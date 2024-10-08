@@ -17,13 +17,15 @@ import CartPage from "./pages/Cart";
 import PaymentPage from "./pages/PaymentPage";
 import SearchResults from "./components/SearchResult";
 import FakeProductPage from "./pages/FakeProductPage";
+import LocalProducts from "./components/LocalProducts";
+import LocalPage from "./pages/LocalPage";
 
 const App = () => {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
         <Header />
-        <Toaster position="top-right"/>
+        <Toaster position="top-right" />
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -35,14 +37,15 @@ const App = () => {
             <Route path="/user" element={<User />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/search" element={<SearchResults />} />
-
-            <Route path="/category/:category/products" element={<CategoryProductsPage />} /> {/* New Route */}
-
-
+            <Route
+              path="/category/:category/products"
+              element={<CategoryProductsPage />}
+            />{" "}
+            {/* New Route */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/products/:id" element={<FakeProductPage />} />
-
+            <Route path="/item/:id" element={<LocalPage />} />
           </Routes>
         </main>
         <Footer />
