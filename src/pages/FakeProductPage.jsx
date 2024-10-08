@@ -167,9 +167,7 @@ const FakeProductPage = () => {
         </div>
 
         {/* Add to Cart Button */}
-        <button className="w-full text-white text-lg font-semibold py-2 mt-4 rounded-md flex items-center justify-center">
           <AddToCart product={product} />
-        </button>
 
         {/* Promotions */}
         <div className="mt-6">

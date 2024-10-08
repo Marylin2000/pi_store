@@ -50,7 +50,7 @@ const Header = () => {
                   <FaRegUser className="text-xl" />
                 }
                 <p className='text-xs'>
-                  {user.displayName}
+                  {user?.displayName}
                 </p>
               </div>
               

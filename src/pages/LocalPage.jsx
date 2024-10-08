@@ -134,9 +134,7 @@ const LocalPage = () => {
             <span className="ml-2 text-sm text-gray-500">(13 verified ratings)</span>
           </div>
         </div>
-        <button className="w-full text-white text-lg font-semibold py-2 mt-4 rounded-md flex items-center justify-center">
           <AddToCart product={product} />
-        </button>
       </div>
 
       <div className="bg-white shadow-md p-4 lg:col-span-1">
