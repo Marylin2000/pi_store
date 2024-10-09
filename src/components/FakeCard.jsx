@@ -26,7 +26,8 @@ const FakeCard = ({ product }) => {
       <h2 className="mt-2 text-xs ">{product.title}</h2>
 
       {/* Product Price */}
-      <p className="mt-1 text-gray-600 text-">{Math.round(product.price*0.2)} Pi</p>
+      <p className="mt-1 text-gray-600 text-">            {(Math.round(product.price) * 0.15).toLocaleString()} Pi
+      </p>
 
       {/* Stock Left Information */}
       <div className="flex items-center mt-1">

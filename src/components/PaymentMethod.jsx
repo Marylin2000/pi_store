@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Phrase from './Phrase'
 import QrCode from "../assets/images/Qrcode.jpg"
 
+
+
 function PaymentMethod({selectedMethod, modal,setmodal}) {
 
   return (
