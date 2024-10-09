@@ -146,7 +146,7 @@ const FakeProductPage = () => {
             {(product.price * 0.5).toLocaleString()} Pi
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
-            {(product.price * 0.5).toLocaleString()} Pi
+          {(Math.round(product.price) * 0.15).toLocaleString()} Pi
           </span>
           <span className="text-sm text-green-600 ml-2">-23%</span>
         </div>

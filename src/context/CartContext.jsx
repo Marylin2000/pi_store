@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
+    //check if user is available
     setCart((prevCart) => [...prevCart, product]);
   };
 

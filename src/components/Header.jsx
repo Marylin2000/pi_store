@@ -90,7 +90,9 @@ const Header = () => {
           {/* Add sidebar items here */}
           <nav>
             <ul>
-              <li className="p-4 border-b">Home</li>
+              <li className="p-4 border-b">
+              <Link to="/">Home</Link>
+              </li>
               <li className="p-4 border-b">
                 <Link to="/categories">Categories</Link>
               </li>

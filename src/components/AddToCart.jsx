@@ -2,14 +2,23 @@ import { useContext } from "react";
 import CartContext from "../context/CartContext"; // Correct import
 import { FiShoppingCart } from "react-icons/fi";
 import toast from "react-hot-toast";
+import { useUser } from "../context/UserContext";
 
 function AddToCart({ product }) {
   const { cart, addToCart } = useContext(CartContext);
-
+  const { user } = useUser();
   const handleAddToCart = (product) => {
-    console.log(product);
-    const productExists = cart.some((item) => item.id === product.id);
+    if (!user) {
+      toast.error("Please log in to add items to your cart.", {
+        style: {
+          background: "#ffa505",
+          color: "black",
+        },
+      });
+      return;
+    }
 
+    const productExists = cart.some((item) => item.id === product.id);
     if (productExists) {
       toast.error(`"${product.title}" is already in the cart`, {
         style: {

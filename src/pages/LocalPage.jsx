@@ -116,7 +116,7 @@ const LocalPage = () => {
         </div>
         <div className="mt-4">
           <span className="text-2xl font-semibold text-orange-600">
-            {(product.price * 0.5).toLocaleString()} Pi
+          {(Math.round(product.price) * 0.15).toLocaleString()} Pi
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
             {(product.price * 0.5).toLocaleString()} Pi

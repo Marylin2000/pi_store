@@ -16,7 +16,7 @@ function PaymentMethod({selectedMethod, modal,setmodal}) {
           alt="QR Code"
           className="mt-2"
           />
-        <p className="mt-2">Payment Address: your-wallet-address-here</p>
+        <p className="mt-2 text-xs">scan Qr code to complete payment</p>
       </div>
     )}
 
