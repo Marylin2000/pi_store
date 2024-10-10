@@ -6,13 +6,15 @@ import image3 from "../assets/images/3.png"
 
 import { MdOutlineAccountBalanceWallet, MdOutlineQrCode, MdOutlineQrCode2 } from "react-icons/md";
 import { useUser } from "../context/UserContext";
+import { useParams } from "react-router-dom";
 
 const PaymentPage = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [passphrase, setPassphrase] = useState("");
   const [modal, setmodal] = useState(false);
   const {user} = useUser()
-
+  const {totalPrice} =  useParams()
+  console.log(totalPrice)
   const handleSelectMethod = (method) => {
     setSelectedMethod(method);
     setmodal(true);
@@ -78,6 +80,7 @@ const PaymentPage = () => {
       selectedMethod={selectedMethod}
       modal={modal}
       setmodal={setmodal}
+      totalPrice={totalPrice}
       />
       </div>:<div className="w-screen h-screen items-center justify-center  ">
           <p>

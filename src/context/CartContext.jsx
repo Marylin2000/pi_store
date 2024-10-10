@@ -24,7 +24,6 @@ export const CartProvider = ({ children }) => {
 
   };
 
-  const totalPrice = cart.reduce((total, product) => total + Math.round(product.price * 0.2), 0);
 
 
   const clearCart = () => {
@@ -34,7 +33,7 @@ export const CartProvider = ({ children }) => {
   const [order, setOrder] = useState("")
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, totalPrice }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

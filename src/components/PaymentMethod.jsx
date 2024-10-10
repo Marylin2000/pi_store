@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 import { useUser } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 
-function PaymentMethod({ selectedMethod, modal, setmodal }) {
+function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
   const {user} = useUser()
-  const { totalPrice, clearCart } = useContext(CartContext);
+  const {  clearCart } = useContext(CartContext);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showConfirmPaymentModal, setShowConfirmPaymentModal] = useState(false);

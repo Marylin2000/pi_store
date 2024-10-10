@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { updateProfile, updateEmail, signOut } from "firebase/auth"; 
 import { uploadImage } from "../services/uploadImage"; 
 import { db } from "../firebase"; // Import Firestore
-import { ref, set } from "firebase/database"; // Import methods for writing data
+import { ref, set, get } from "firebase/database"; // Import methods for writing data
 
 const UserPage = () => {
   const { user, setUser } = useUser();
@@ -19,17 +19,27 @@ const UserPage = () => {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        displayName: user.displayName || "",
-        email: user.email || "",
-        profileImage: user.photoURL || "",
-        address: user.address || "", // Load address from user
-        password: "",
-      });
-    }
-  }, [user]);
+    useEffect(() => {
+      if (user) {
+        const loadUserData = async () => {
+          const userRef = ref(db, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            setFormData({
+              displayName: userData.displayName || "",
+              email: userData.email || "",
+              profileImage: userData.photoURL || "",
+              address: userData.address || "", // Load address from database
+              password: "",
+            });
+          }
+        };
+        
+        loadUserData();
+      }
+    }, [user]);
+    
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,36 +78,36 @@ const UserPage = () => {
           alert("Please enter a valid email address.");
           return;
         }
-
+  
         // Update Firebase Authentication profile
         await updateProfile(user, {
           displayName: formData.displayName,
           photoURL: formData.profileImage,
         });
-
+  
         // Only update email if it is different
         if (user.email !== formData.email) {
           await updateEmail(user, formData.email);
         }
-
+  
         // Update Realtime Database profile
         const userRef = ref(db, `users/${user.uid}`);
         await set(userRef, {
           displayName: formData.displayName,
           email: formData.email,
           photoURL: formData.profileImage,
-          address: formData.address,
+          address: formData.address, // Ensure address is included here
         });
-
+  
         // Update local user state
         setUser({
           ...user,
           displayName: formData.displayName,
           email: formData.email,
           photoURL: formData.profileImage,
-          address: formData.address,
+          address: formData.address, // Update address in user state
         });
-
+  
         setEditMode(false);
         alert("Profile updated successfully!");
       }
@@ -108,7 +118,7 @@ const UserPage = () => {
       setUploading(false); // Set uploading to false after the update
     }
   };
-
+  
   const handleLogout = async () => {
     try {
       await signOut(auth);

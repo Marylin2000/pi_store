@@ -3,7 +3,7 @@ import CartContext from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cart, removeFromCart, clearCart, totalPrice } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart } = useContext(CartContext);
 
   // Calculate total price of the cart
 
@@ -14,6 +14,8 @@ const CartPage = () => {
   const handleCheckout = () => {
     // Logic to handle checkout
   };
+  const totalPrice = cart.reduce((total, product) => total + Math.round(product.price * 0.2), 0);
+
 
   return (
     <div className="container mx-auto p-4">
@@ -60,7 +62,7 @@ const CartPage = () => {
             >
               Clear Cart
             </button>
-            <Link to={"/payment"}>
+            <Link to={`/payment/:${totalPrice}`}>
               <button
                 onClick={handleCheckout}
                 className="bg-blue-500 text-white px-4 py-2 rounded-md"

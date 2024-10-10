@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchProductById } from '../services/api';
-import { FaStar, FaTruck, FaHeart, FaCartPlus } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
-import AddToCart from '../components/AddToCart';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import Loader from '../components/Loader';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { fetchProductById } from "../services/api";
+import { FaStar, FaTruck, FaHeart, FaCartPlus } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import AddToCart from "../components/AddToCart";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import Loader from "../components/Loader";
+import { useUser } from "../context/UserContext";
 
 const deliveryFeesByContinent = {
   Africa: 10,
@@ -16,11 +17,12 @@ const deliveryFeesByContinent = {
 };
 
 const ProductPage = () => {
+  const { user } = useUser();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [image, setImage] = useState('');
-  const [country, setCountry] = useState('');
-  const [region, setRegion] = useState('');
+  const [image, setImage] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
   const [deliveryFee, setDeliveryFee] = useState(50); // Default delivery fee
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const ProductPage = () => {
         setProduct(data);
         setImage(data.thumbnail); // Set the initial main image
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error("Error fetching product:", error);
       }
     };
     getProduct();
@@ -45,17 +47,24 @@ const ProductPage = () => {
 
   const fetchContinentByCountry = async (countryName) => {
     try {
-      const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+      const response = await fetch(
+        `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+      );
       const data = await response.json();
       const continent = data[0]?.continents[0]; // Get the continent name
       const fee = deliveryFeesByContinent[continent] || 50; // Fallback to default fee
       setDeliveryFee(fee);
     } catch (error) {
-      console.error('Error fetching continent:', error);
+      console.error("Error fetching continent:", error);
     }
   };
 
-  if (!product) return <div className="p-4"><Loader /></div>;
+  if (!product)
+    return (
+      <div className="p-4">
+        <Loader />
+      </div>
+    );
 
   const handleImageClick = (e) => {
     const imageLink = e.target.src;
@@ -67,9 +76,14 @@ const ProductPage = () => {
     const currentDate = new Date();
     const minDeliveryDays = 3;
     const maxDeliveryDays = 10;
-    const deliveryDays = Math.floor(Math.random() * (maxDeliveryDays - minDeliveryDays + 1)) + minDeliveryDays;
+    const deliveryDays =
+      Math.floor(Math.random() * (maxDeliveryDays - minDeliveryDays + 1)) +
+      minDeliveryDays;
     currentDate.setDate(currentDate.getDate() + deliveryDays);
-    return currentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+    return currentDate.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+    });
   };
 
   // Handle region change
@@ -132,7 +146,9 @@ const ProductPage = () => {
       {/* Right Column - Product Details */}
       <div className="lg:col-span-1 bg-white shadow-md p-4">
         <div className="flex justify-between items-center">
-          <div className="text-sm bg-green-500 text-white px-2 py-1 rounded-md">Official Store</div>
+          <div className="text-sm bg-green-500 text-white px-2 py-1 rounded-md">
+            Official Store
+          </div>
         </div>
 
         <h1 className="text-xl font-bold mt-4">{product.title}</h1>
@@ -150,7 +166,9 @@ const ProductPage = () => {
           </span>
           <span className="text-sm text-green-600 ml-2">-23%</span>
         </div>
-        <p className="text-sm text-gray-500 mt-2">+ shipping from {deliveryFee} Pi to {region}</p>
+        <p className="text-sm text-gray-500 mt-2">
+          + shipping from {deliveryFee} Pi to {region}
+        </p>
 
         <div className="mt-4">
           <div className="flex items-center">
@@ -164,14 +182,26 @@ const ProductPage = () => {
             </span>
           </div>
         </div>
+        <div className="bg-orange-500 my-4 py-1 flex items-center justify-center text-white font-bold rounded-md">
+        <Link
+          to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}
+         // Wrap in arrow function
+        >
+          Check Out
+        </Link>
+        </div>
 
         <AddToCart product={product} />
+        
 
         <div className="mt-6">
           <p className="text-sm font-semibold">PROMOTIONS</p>
           <ul className="text-sm text-gray-700 mt-2 space-y-1">
             <li> Email pistore.net To Place Your Order</li>
-            <li>🚚 Enjoy cheaper shipping fees when you select a Pickup Station at checkout.</li>
+            <li>
+              🚚 Enjoy cheaper shipping fees when you select a Pickup Station at
+              checkout.
+            </li>
           </ul>
         </div>
       </div>
@@ -192,18 +222,32 @@ const ProductPage = () => {
             onChange={handleRegionChange}
             classes="w-full border p-2 mt-2"
           />
+          <div>
+            {user ? (
+              <div>
+                {" "}
+                Shipping Products to{" "}
+                <p className="text-orange-400 font-bold"> {user?.address}</p>
+              </div>
+            ) : (
+              <div>Please set your address in your Profile</div>
+            )}
+          </div>
         </div>
 
         <div className="mt-6">
           <FaTruck className="inline-block text-orange-500" />
           <span className="ml-2 text-sm text-gray-700">
-            Delivery Fees {deliveryFee} Pi | Arriving between {calculateDeliveryDate()} and {calculateDeliveryDate()}.
+            Delivery Fees {deliveryFee} Pi | Arriving between{" "}
+            {calculateDeliveryDate()} and {calculateDeliveryDate()}.
           </span>
         </div>
 
         <div className="mt-6">
           <h3 className="text-sm font-semibold">Return Policy</h3>
-          <p className="text-sm text-gray-600">Free return within 7 days for all eligible items</p>
+          <p className="text-sm text-gray-600">
+            Free return within 7 days for all eligible items
+          </p>
         </div>
 
         <div className="mt-6">
@@ -216,4 +260,4 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-``
+``;
