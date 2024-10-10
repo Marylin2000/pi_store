@@ -96,8 +96,8 @@ const Header = () => {
               <li className="p-4 border-b">
                 <Link to="/categories">Categories</Link>
               </li>
-              <li className="p-4 border-b">Deals</li>
-              <li className="p-4 border-b">Contact Us</li>
+              {/* <li className="p-4 border-b">Deals</li>
+              <li className="p-4 border-b">Contact Us</li> */}
             </ul>
           </nav>
         </div>

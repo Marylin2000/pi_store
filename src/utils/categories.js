@@ -11,12 +11,7 @@ export const categories = [
       description: "Latest gadgets, devices, and home appliances.",
       image: "https://example.com/images/electronics.jpg"
     },
-    {
-      id: 3,
-      name: "gaming",
-      description: "Consoles, games, and accessories for gamers.",
-      image: "https://example.com/images/gaming.jpg"
-    },
+    
     {
       id: 4,
       name: "motorcycle",
@@ -31,7 +26,7 @@ export const categories = [
     },
     {
       id: 6,
-      name: "Accessories",
+      name: "mobile-accessories",
       description: "Fashionable accessories to complement your style.",
       image: "https://example.com/images/accessories.jpg"
     }

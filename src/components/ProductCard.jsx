@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <div className="p-4 border rounded-lg flex flex-col items-center shadow hover:shadow-lg transition-shadow">
       <Link to={`/product/${product.id}`}>
         <img
-          src={product.thumbnail}
+          src={product.images[0]}
           alt={product.title}
           className="w h-24 object-contain rounded-lg"
         />

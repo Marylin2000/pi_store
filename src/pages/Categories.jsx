@@ -32,7 +32,7 @@ function Categories() {
     <main>
       <div className="p-4">
         {
-        category !==" electronics"?
+        category !== "electronics"?
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -49,7 +49,12 @@ function Categories() {
             
             <FakeCard key={product.id} product={product} />
           ))}
+          {
+            console.log("i am redering fake products")
+            
+          }
         </div>
+
         }
       </div>
     </main>

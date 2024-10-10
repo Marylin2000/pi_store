@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'  // Importing React Icons
+import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa'  // Importing React Icons
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 
@@ -33,10 +34,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="text-sm space-y-2">
-              <li><a href="#" className="hover:underline">Electronics</a></li>
-              <li><a href="#" className="hover:underline">Fashion</a></li>
-              <li><a href="#" className="hover:underline">Gaming</a></li>
-              <li><a href="#" className="hover:underline">Vehicles</a></li>
+              
+              <li><Link to={`categories/${"electronics"}`}  className="hover:underline">Electronics</Link></li>
+              <li><Link to={`categories/${"womens-clothing"}`}  className="hover:underline">Fashion</Link></li>
+              <li><Link to={`categories/${"smartphones"}`}  className="hover:underline">Smart Phones</Link></li>
+              <li><Link to={`categories/${"vehicle"}`}  className="hover:underline">Vehicles</Link></li>
             </ul>
           </div>
 
@@ -60,7 +62,7 @@ const Footer = () => {
                 <FaFacebookF className="h-6 w-6" />
               </a>
               <a href="#" aria-label="Twitter" className="hover:text-blue-400">
-                <FaTwitter className="h-6 w-6" />
+                <FaWhatsapp className="h-6 w-6" />
               </a>
               <a href="#" aria-label="Instagram" className="hover:text-pink-600">
                 <FaInstagram className="h-6 w-6" />
