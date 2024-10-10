@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../services/api';
 import { FaStar, FaTruck, FaHeart, FaCartPlus } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion components
+import { motion, AnimatePresence } from 'framer-motion';
 import AddToCart from '../components/AddToCart';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Loader from '../components/Loader';
+
+const deliveryFeesByContinent = {
+  Africa: 10,
+  Europe: 40,
+  Americas: 50,
+  Asia: 30,
+  Oceania: 35,
+};
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -13,7 +21,7 @@ const ProductPage = () => {
   const [image, setImage] = useState('');
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
-  const [deliveryFee] = useState(50); // Static delivery fee
+  const [deliveryFee, setDeliveryFee] = useState(50); // Default delivery fee
 
   useEffect(() => {
     const getProduct = async () => {
@@ -27,6 +35,25 @@ const ProductPage = () => {
     };
     getProduct();
   }, [id]);
+
+  // Update delivery fee when country changes
+  useEffect(() => {
+    if (country) {
+      fetchContinentByCountry(country);
+    }
+  }, [country]);
+
+  const fetchContinentByCountry = async (countryName) => {
+    try {
+      const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+      const data = await response.json();
+      const continent = data[0]?.continents[0]; // Get the continent name
+      const fee = deliveryFeesByContinent[continent] || 50; // Fallback to default fee
+      setDeliveryFee(fee);
+    } catch (error) {
+      console.error('Error fetching continent:', error);
+    }
+  };
 
   if (!product) return <div className="p-4"><Loader /></div>;
 
@@ -62,23 +89,22 @@ const ProductPage = () => {
       {/* Left Column - Product Image and Gallery */}
       <div className="lg:col-span-1">
         <div className="bg-white shadow-md p-4">
-          <AnimatePresence mode='wait'>
+          <AnimatePresence mode="wait">
             <motion.img
-              key={image} // Key changes when image changes, triggering animation
-              src={image || product.thumbnail} // Fallback to product.thumbnail
-              onClick={handleImageClick} // Handle image click
+              key={image}
+              src={image || product.thumbnail}
+              onClick={handleImageClick}
               alt={product.title}
               width={250}
               className="object-cover mb-4 cursor-pointer"
-              variants={variants} // Apply animation variants
-              initial="initial" // Initial state
-              animate="animate" // Animate to this state
-              exit="exit" // Exit animation
-              transition={{ duration: 0.5 }} // Animation duration
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.5 }}
             />
           </AnimatePresence>
           <div className="flex gap-5">
-            {/* Additional product images (gallery) */}
             {product.images?.slice(0, 4).map((img, index) => (
               <img
                 key={index}
@@ -86,12 +112,11 @@ const ProductPage = () => {
                 width={70}
                 alt={`Thumbnail ${index + 1}`}
                 className="object-cover border p-1 border-gray-300 cursor-pointer"
-                onClick={handleImageClick} // Handle thumbnail click
+                onClick={handleImageClick}
               />
             ))}
           </div>
         </div>
-        {/* Share Section */}
         <div className="flex items-center mt-4">
           <button className="text-gray-600 flex items-center mr-4">
             <FaHeart className="mr-2" /> Add to Wishlist
@@ -113,10 +138,9 @@ const ProductPage = () => {
         <h1 className="text-xl font-bold mt-4">{product.title}</h1>
         <p className="text-sm text-gray-500">Brand: {product.brand}</p>
         <div>
-            <p>{product.description}</p>
+          <p>{product.description}</p>
         </div>
 
-        {/* Price Section */}
         <div className="mt-4">
           <span className="text-2xl font-semibold text-orange-600">
             {(Math.round(product.price) * 0.15).toLocaleString()} Pi
@@ -128,7 +152,6 @@ const ProductPage = () => {
         </div>
         <p className="text-sm text-gray-500 mt-2">+ shipping from {deliveryFee} Pi to {region}</p>
 
-        {/* Rating Section */}
         <div className="mt-4">
           <div className="flex items-center">
             <FaStar className="text-yellow-400" />
@@ -142,10 +165,8 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Add to Cart Button */}
         <AddToCart product={product} />
 
-        {/* Promotions */}
         <div className="mt-6">
           <p className="text-sm font-semibold">PROMOTIONS</p>
           <ul className="text-sm text-gray-700 mt-2 space-y-1">
@@ -155,27 +176,24 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* Sidebar - Delivery & Returns */}
       <div className="bg-white shadow-md p-4 lg:col-span-1">
         <h2 className="text-lg font-semibold">Delivery & Returns</h2>
         <div className="mt-4">
           <p className="text-sm text-gray-600">Choose your location</p>
 
-          {/* Country and Region Dropdowns */}
           <CountryDropdown
             value={country}
             onChange={(val) => setCountry(val)}
-            classes="w-full border p-2 mt-2" // Style it
+            classes="w-full border p-2 mt-2"
           />
           <RegionDropdown
             country={country}
             value={region}
             onChange={handleRegionChange}
-            classes="w-full border p-2 mt-2" // Style it
+            classes="w-full border p-2 mt-2"
           />
         </div>
 
-        {/* Delivery Info */}
         <div className="mt-6">
           <FaTruck className="inline-block text-orange-500" />
           <span className="ml-2 text-sm text-gray-700">
@@ -183,13 +201,11 @@ const ProductPage = () => {
           </span>
         </div>
 
-        {/* Return Policy */}
         <div className="mt-6">
           <h3 className="text-sm font-semibold">Return Policy</h3>
           <p className="text-sm text-gray-600">Free return within 7 days for all eligible items</p>
         </div>
 
-        {/* Warranty */}
         <div className="mt-6">
           <h3 className="text-sm font-semibold">Warranty</h3>
           <p className="text-sm text-gray-600">One year</p>
@@ -200,3 +216,4 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+``

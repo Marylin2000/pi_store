@@ -31,6 +31,8 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const [order, setOrder] = useState("")
+
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, totalPrice }}>
       {children}

@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useUser } from "../context/UserContext";
-import { auth } from "../firebase"; // Ensure Firebase is configured properly
-import { updateProfile, updateEmail } from "firebase/auth";
-import { uploadImage } from "../services/uploadImage";
+import { auth } from "../firebase"; 
+import { updateProfile, updateEmail, signOut } from "firebase/auth"; 
+import { uploadImage } from "../services/uploadImage"; 
+import { db } from "../firebase"; // Import Firestore
+import { ref, set } from "firebase/database"; // Import methods for writing data
 
 const UserPage = () => {
   const { user, setUser } = useUser();
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
-    displayName: user?.displayName || "",
-    email: user?.email || "",
-    profileImage: user?.photoURL || "",
+    displayName: "",
+    email: "",
+    profileImage: "",
+    address: "", // Initial address value
+    password: "",
   });
   const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        displayName: user.displayName || "",
+        email: user.email || "",
+        profileImage: user.photoURL || "",
+        address: user.address || "", // Load address from user
+        password: "",
+      });
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,105 +43,173 @@ const UserPage = () => {
     const file = e.target.files[0];
     if (file) {
       setUploading(true);
-      const imageUrl = await uploadImage(file);
-      setFormData((prev) => ({
-        ...prev,
-        profileImage: imageUrl,
-      }));
-      setUploading(false);
+      try {
+        const imageUrl = await uploadImage(file);
+        setFormData((prev) => ({
+          ...prev,
+          profileImage: imageUrl,
+        }));
+      } catch (error) {
+        console.error("Image upload error: ", error);
+        alert("Error uploading image.");
+      } finally {
+        setUploading(false);
+      }
     }
   };
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
+    setUploading(true); // Set uploading to true when starting the update
     try {
       if (user) {
+        // Check if the email is valid before updating
+        if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Update Firebase Authentication profile
         await updateProfile(user, {
           displayName: formData.displayName,
           photoURL: formData.profileImage,
         });
+
+        // Only update email if it is different
         if (user.email !== formData.email) {
           await updateEmail(user, formData.email);
         }
-        setUser({ ...user, displayName: formData.displayName, email: formData.email, photoURL: formData.profileImage });
+
+        // Update Realtime Database profile
+        const userRef = ref(db, `users/${user.uid}`);
+        await set(userRef, {
+          displayName: formData.displayName,
+          email: formData.email,
+          photoURL: formData.profileImage,
+          address: formData.address,
+        });
+
+        // Update local user state
+        setUser({
+          ...user,
+          displayName: formData.displayName,
+          email: formData.email,
+          photoURL: formData.profileImage,
+          address: formData.address,
+        });
+
         setEditMode(false);
         alert("Profile updated successfully!");
       }
     } catch (error) {
-      console.error("Error updating profile: ", error);
+      console.error("Error updating profile: ", error.message || error);
       alert("An error occurred while updating your profile.");
+    } finally {
+      setUploading(false); // Set uploading to false after the update
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      setFormData({
+        displayName: "",
+        email: "",
+        profileImage: "",
+        address: "",
+        password: "",
+      });
+      alert("Logged out successfully!");
+    } catch (error) {
+      console.error("Logout error: ", error);
+      alert("An error occurred while logging out.");
+    }
+  };
+
+  const handleImageUploadClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
   return (
-    <main className="h-screen w-screen bg-gray-100 py-2 px-2 flex justify-center">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
-        <h1 className="text-3xl font-semibold mb-6 text-gray-800">User Profile</h1>
-        <div className="flex items-center space-x-4 mb-8">
-          <img
-            src={formData.profileImage || "https://via.placeholder.com/150"}
-            alt="Profile"
-            className="w-20 h-20 rounded-full object-cover"
-          />
-          <div>
-            <h2 className="text-xl font-medium">{user?.displayName || "User"}</h2>
-            <p className="text-gray-500">{user?.email}</p>
+    <main className="h-screen w-screen py-4 px-2 flex justify-center items-start">
+      <div className="bg-white shadow-lg rounded-lg p-4 w-full max-w-md">
+        <div className="flex items-center justify-between mb-4">
+          <button className="text-white text-2xl">☰</button>
+          <h1 className="text-white text-xl font-semibold">Edit Profile</h1>
+          <div className="flex items-center space-x-3">
+            <button className="text-white">🔔</button>
+            <button className="text-white">🛒</button>
           </div>
         </div>
-
-        {editMode ? (
-          <form onSubmit={handleUpdateProfile} className="space-y-6">
-            <div>
-              <label className="block text-gray-700">Name</label>
-              <input
-                type="text"
-                name="displayName"
-                value={formData.displayName}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required
+        <div className="bg-indigo-500 rounded-t-lg p-6">
+          <div className="flex justify-center">
+            <div className="relative">
+              <img
+                src={formData.profileImage || "https://via.placeholder.com/150"}
+                alt="Profile"
+                className="w-24 h-24 rounded-full object-cover border-4 border-white"
               />
-            </div>
-            <div>
-              <label className="block text-gray-700">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700">Profile Image</label>
+              <button
+                onClick={handleImageUploadClick}
+                className="absolute bottom-0 right-0 bg-white p-2 rounded-full"
+              >
+                ✏️
+              </button>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="w-full"
+                className="hidden"
+                ref={fileInputRef}
               />
-              {uploading && <p className="text-gray-500">Uploading...</p>}
             </div>
-            <button
-              type="submit"
-              className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600"
-              disabled={uploading}
-            >
-              Update Profile
-            </button>
-          </form>
-        ) : (
+          </div>
+          <h2 className="text-white text-center text-lg mt-4">
+            {user?.displayName || "User"}
+          </h2>
+        </div>
+        <form onSubmit={handleUpdateProfile} className="mt-6 space-y-4">
+          <input
+            type="text"
+            name="displayName"
+            value={formData.displayName}
+            onChange={handleInputChange}
+            placeholder={user?.displayName || "Name"}
+            className="w-full px-3 py-2 border rounded-md"
+          />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder={user?.email || "Email"}
+            className="w-full px-3 py-2 border rounded-md"
+          />
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            placeholder="Enter your address" // More descriptive placeholder
+            className="w-full px-3 py-2 border rounded-md"
+          />
           <button
-            onClick={() => setEditMode(true)}
-            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600"
+            type="submit"
+            className={`w-full py-2 rounded-md text-white ${uploading ? "bg-gray-400" : "bg-blue-600"}`}
+            disabled={uploading}
           >
-            Edit Profile
+            {uploading ? "Uploading..." : "Update Profile"} {/* Change button text */}
           </button>
-        )}
-
-        <h2 className="text-2xl font-semibold mt-8 mb-4">Your Cart</h2>
-     
+        </form>
+        <button
+          onClick={handleLogout}
+          className="w-full py-2 mt-4 rounded-md bg-red-600 text-white"
+        >
+          Logout
+        </button>
       </div>
     </main>
   );

@@ -24,7 +24,8 @@
     "react-router-dom": "^6.26.2",
     "react-select": "^5.8.1",
     "react-select-country-list": "^2.2.3",
-    "react-spinner": "^0.2.7"
+    "react-spinner": "^0.2.7",
+    "sweetalert2": "^11.14.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
