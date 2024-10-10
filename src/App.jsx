@@ -19,6 +19,7 @@ import SearchResults from "./components/SearchResult";
 import FakeProductPage from "./pages/FakeProductPage";
 import LocalProducts from "./components/LocalProducts";
 import LocalPage from "./pages/LocalPage";
+import Categories from "./pages/Categories";
 
 const App = () => {
   return (
@@ -30,6 +31,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/categories/:category" element={<Categories />} />
+
             <Route path="/cart" element={<CartPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/signup" element={<Signup />} />

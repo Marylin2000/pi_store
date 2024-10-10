@@ -5,11 +5,13 @@ import image2 from "../assets/images/2.png"
 import image3 from "../assets/images/3.png"
 
 import { MdOutlineAccountBalanceWallet, MdOutlineQrCode, MdOutlineQrCode2 } from "react-icons/md";
+import { useUser } from "../context/UserContext";
 
 const PaymentPage = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [passphrase, setPassphrase] = useState("");
   const [modal, setmodal] = useState(false);
+  const {user} = useUser()
 
   const handleSelectMethod = (method) => {
     setSelectedMethod(method);
@@ -21,6 +23,10 @@ const PaymentPage = () => {
   };
 
   return (
+    <main>
+
+      {
+        user?
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Select Payment Method</h1>
       <div className="space-y-4">
@@ -31,7 +37,7 @@ const PaymentPage = () => {
             <button
               onClick={() => handleSelectMethod("QR")}
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            >
+              >
               Select
             </button>
           </div>
@@ -60,7 +66,7 @@ const PaymentPage = () => {
             <button
               onClick={() => handleSelectMethod("Wallet")}
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            >
+              >
               Select
             </button>
           </div>
@@ -69,11 +75,23 @@ const PaymentPage = () => {
       </div>
 
       <PaymentMethod
-        selectedMethod={selectedMethod}
-        modal={modal}
-        setmodal={setmodal}
+      selectedMethod={selectedMethod}
+      modal={modal}
+      setmodal={setmodal}
       />
-    </div>
+      </div>:<div className="w-screen h-screen items-center justify-center  ">
+          <p>
+            Please Login to place your order
+          </p>
+          <button
+            onClick={() => {}}>
+              Login
+            </button>
+
+      </div>
+    }
+    </main>
+
   );
 };
 
