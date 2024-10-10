@@ -3,8 +3,11 @@ import Phrase from "./Phrase";
 import QrCode from "../assets/images/Qrcode.jpg";
 import CartContext from "../context/CartContext";
 import Swal from "sweetalert2";
+import { useUser } from "../context/UserContext";
+import { Navigate } from "react-router-dom";
 
 function PaymentMethod({ selectedMethod, modal, setmodal }) {
+  const {user} = useUser()
   const { totalPrice, clearCart } = useContext(CartContext);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -40,23 +43,29 @@ function PaymentMethod({ selectedMethod, modal, setmodal }) {
     setShowCancelModal(false);
     setmodal(false);
   };
-
   const confirmPayment = () => {
     setShowConfirmPaymentModal(false);
     setShowVerification(true);
-
+  
+    // Check if totalPrice is less than or equal to zero
+    if (totalPrice <= 0) {
+      setVerificationFailed(true); // Set verificationFailed to true
+      setShowVerification(false); // Hide verification modal
+      return; // Exit the function to prevent further execution
+    }
+  
+    // Proceed with the normal flow if totalPrice is valid
     setTimeout(() => {
       setShowVerification(false);
       confirmLocation(); // Show confirm location modal after placing order modal is hidden
-
-      
+  
       setTimeout(() => {
-      setShowPlacingOrderModal(false); // Show placing order modal
-      finalizeOrder()
-
+        setShowPlacingOrderModal(false); // Show placing order modal
+        finalizeOrder();
       }, 5000);
     }, 5000); // Wait 5 seconds for verification
   };
+  
 
   const confirmLocation = () => {
     setShowLocationModal(true); // Show confirm location modal
@@ -67,13 +76,14 @@ function PaymentMethod({ selectedMethod, modal, setmodal }) {
     clearCart();
     setmodal(false);
     setShowPlacingOrderModal(false); // Hide placing order modal after 5 seconds
+    Navigate("/")
 
     
     // Show SweetAlert2 confirmation
     Swal.fire({
-      icon: 'success',
-      title: 'Order Placed!',
-      text: 'Your order will be delivered to the specified location.',
+      icon: 'error',
+      title: 'An Error occured',
+      text: 'An Error encountered while placing your order',
       confirmButtonText: 'OK',
     });
     
@@ -114,14 +124,20 @@ function PaymentMethod({ selectedMethod, modal, setmodal }) {
           </div>
         )}
         {verificationFailed && (
+        
           <div className="fixed inset-0 flex items-center justify-center bg-black/50">
             <div className="bg-white p-6 rounded-md">
-              <h3 className="text-lg font-semibold text-red-500">
-                Payment verification failed.
-              </h3>
-              <p>Please check your order page for more details.</p>
+              <h3 className="text-lg  text-red-600 font-semibold">Payment Verification Failed</h3>
+              <p>Price must be greater the 0pi</p>
+              <button
+                onClick={() => setVerificationFailed(false)}
+                className="px-4 py-2 mt-4 text-white bg-blue-700 rounded-md"
+              >
+                OK
+              </button>
             </div>
           </div>
+        
         )}
         {showCancelModal && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/50">
@@ -172,7 +188,7 @@ function PaymentMethod({ selectedMethod, modal, setmodal }) {
             <div className="bg-white p-6 rounded-md">
               <h3 className="text-lg font-semibold">Confirm Delivery Location</h3>
               <p>Are you ordering to this location?</p>
-              <p className="text-blue-500 mt-2">{deliveryLocation}</p>
+              <p className="text-blue-500 mt-2">{user?.address}</p>
               <div className="flex justify-end mt-4">
                 <button
                   onClick={declineLocation}

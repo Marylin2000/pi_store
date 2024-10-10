@@ -18,7 +18,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log('Firebase initialized:', app.name); // Should log the app name if successful
 
 // Initialize Firestore
 export const firestore = getFirestore(app); // Initialize Firestore and export it
