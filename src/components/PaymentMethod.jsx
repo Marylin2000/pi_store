@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Phrase from "./Phrase";
 import QrCode from "../assets/images/Qrcode.jpg";
+import { useParams } from "react-router-dom";
+import CartContext from "../context/CartContext";
 
 function PaymentMethod({ selectedMethod, modal, setmodal }) {
+  const { totalPrice } = useContext(CartContext); // Get total price from URL params
   return (
     <main
       className={`absolute h-screen w-screen top-0 left-0 right-0 ${
@@ -21,22 +24,25 @@ function PaymentMethod({ selectedMethod, modal, setmodal }) {
               className="mt-2"
             />
             <p className="mt-2 text-xs">scan Qr code to complete payment</p>
+            <p className="mt-2">Amount to Pay: {totalPrice} Pi</p> {/* Display amount */}
           </div>
         )}
         {selectedMethod === "Manual" && (
-          <div className="mt-6  flex justify-center flex-col w-full px-4 items-center">
+          <div className="mt-6 flex justify-center flex-col w-full px-4 items-center">
             <h3 className="text-lg font-semibold">Manual Payment Details</h3>
             <p>Payment Address: </p>
             <p className="text-[#76348e] text-center flex-wrap">
               GBJGAARZQXWAICHE4JQAVWQ7EA3QJRAXVZRW
               MK7DC5PHE357S7QF5UHT
             </p>
+            <p className="mt-2">Amount to Pay: {totalPrice} Pi</p> {/* Display amount */}
           </div>
         )}
         {selectedMethod === "Wallet" && (
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Connect Your Wallet</h3>
             <Phrase />
+            <p className="mt-2">Amount to Pay: {totalPrice} Pi</p> {/* Display amount */}
           </div>
         )}
         <div className="flex justify-end">

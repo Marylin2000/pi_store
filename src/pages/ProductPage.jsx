@@ -13,10 +13,7 @@ const ProductPage = () => {
   const [image, setImage] = useState('');
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
-  const [deliveryFee, setDeliveryFee] = useState(50); // Initial delivery fee for Nigeria
-
-  // Coordinates of a central location in Africa (e.g., Nigeria)
-  const africaCoords = { lat: 9.082, lon: 8.6753 };
+  const [deliveryFee] = useState(50); // Static delivery fee
 
   useEffect(() => {
     const getProduct = async () => {
@@ -36,39 +33,21 @@ const ProductPage = () => {
   const handleImageClick = (e) => {
     const imageLink = e.target.src;
     setImage(imageLink);
-    console.log('Clicked Image URL:', imageLink);
-    console.log('Product Data:', product);
   };
 
-  // Function to calculate the delivery fee based on distance
-  const calculateDeliveryFee = (lat, lon) => {
-    const distance = getDistanceFromLatLonInKm(africaCoords.lat, africaCoords.lon, lat, lon);
-    // Calculate delivery fee based on distance, e.g., 1 Pi per 100 km
-    const fee = Math.round(distance / 100 * 100); // Adjust to your preferred pricing model
-    setDeliveryFee(fee);
+  // Function to calculate a random delivery day between 3 to 10 days from now
+  const calculateDeliveryDate = () => {
+    const currentDate = new Date();
+    const minDeliveryDays = 3;
+    const maxDeliveryDays = 10;
+    const deliveryDays = Math.floor(Math.random() * (maxDeliveryDays - minDeliveryDays + 1)) + minDeliveryDays;
+    currentDate.setDate(currentDate.getDate() + deliveryDays);
+    return currentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
   };
 
-  // Function to calculate distance between two points
-  const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; // Radius of the earth in km
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
-  };
-
-  const deg2rad = (deg) => deg * (Math.PI / 180);
-
-  // Handle region change and update delivery fee based on region's approximate coordinates
+  // Handle region change
   const handleRegionChange = (val) => {
     setRegion(val);
-    // Assuming the region's coordinates are known, e.g., based on a lookup table.
-    const regionCoords = { lat: 6.5244, lon: 3.3792 }; // Placeholder coordinates (Lagos, Nigeria)
-    calculateDeliveryFee(regionCoords.lat, regionCoords.lon);
   };
 
   // Define animation variants for sliding in
@@ -83,7 +62,7 @@ const ProductPage = () => {
       {/* Left Column - Product Image and Gallery */}
       <div className="lg:col-span-1">
         <div className="bg-white shadow-md p-4">
-          <AnimatePresence mode='wait' >
+          <AnimatePresence mode='wait'>
             <motion.img
               key={image} // Key changes when image changes, triggering animation
               src={image || product.thumbnail} // Fallback to product.thumbnail
@@ -134,9 +113,7 @@ const ProductPage = () => {
         <h1 className="text-xl font-bold mt-4">{product.title}</h1>
         <p className="text-sm text-gray-500">Brand: {product.brand}</p>
         <div>
-            <p>
-              {product.description}
-            </p>
+            <p>{product.description}</p>
         </div>
 
         {/* Price Section */}
@@ -166,7 +143,7 @@ const ProductPage = () => {
         </div>
 
         {/* Add to Cart Button */}
-          <AddToCart product={product} />
+        <AddToCart product={product} />
 
         {/* Promotions */}
         <div className="mt-6">
@@ -184,7 +161,7 @@ const ProductPage = () => {
         <div className="mt-4">
           <p className="text-sm text-gray-600">Choose your location</p>
 
-          {/* Replace the select dropdowns with CountryDropdown and RegionDropdown */}
+          {/* Country and Region Dropdowns */}
           <CountryDropdown
             value={country}
             onChange={(val) => setCountry(val)}
@@ -202,10 +179,9 @@ const ProductPage = () => {
         <div className="mt-6">
           <FaTruck className="inline-block text-orange-500" />
           <span className="ml-2 text-sm text-gray-700">
-            Delivery Fees {deliveryFee} Pi | Arriving between 08 and 10 October. Order within 6hrs 25mins
+            Delivery Fees {deliveryFee} Pi | Arriving between {calculateDeliveryDate()} and {calculateDeliveryDate()}.
           </span>
         </div>
-        
 
         {/* Return Policy */}
         <div className="mt-6">
