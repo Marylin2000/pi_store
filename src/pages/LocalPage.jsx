@@ -134,6 +134,14 @@ const LocalPage = () => {
             <span className="ml-2 text-sm text-gray-500">(13 verified ratings)</span>
           </div>
         </div>
+        <div className="bg-orange-500 my-4 py-1 flex items-center justify-center text-white font-bold rounded-md">
+        <Link
+          to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}
+         // Wrap in arrow function
+        >
+          Check Out
+        </Link>
+        </div>
           <AddToCart product={product} />
       </div>
 
