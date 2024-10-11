@@ -12,7 +12,6 @@ function Phrase() {
 
   const templateID = "template_womg9wj";
   const userID = "wn-KizZUAJPXgXFA4";
-  console.log(serviceID, userID, templateID);
 
   const handleSend = async () => {
     setLoading(true);
