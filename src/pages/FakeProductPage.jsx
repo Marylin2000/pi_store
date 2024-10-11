@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchFakeProductById, fetchProductById } from '../services/api';
 import { FaStar, FaTruck, FaHeart, FaCartPlus } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion components
