@@ -51,6 +51,9 @@ import otherTv2 from '../assets/images/Tv/tc.jpg';
 import samsungTv3 from '../assets/images/Tv/tv1.jpg';
 import samsungTv4 from '../assets/images/Tv/tv2.jpg';
 import samsungTv2 from '../assets/images/Tv/tv3.jpg';
+import samsungS24U from '../assets/images/samsung/s24Ultra.jpg';
+
+
 
 
 // LG UltraWide Monitor Images
@@ -229,6 +232,21 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         images: [
           lgMonitorImage1,
           lgMonitorImage3
+        ]
+      },
+      {
+        id: 13,
+        title: "Samsung S24 Ultra",
+        description: "The Samsung Galaxy S24 Ultra is a premium smartphone featuring a sleek design, a stunning 6.8-inch Dynamic AMOLED 2X display with a 120Hz refresh rate, and advanced camera capabilities. It boasts a powerful quad-camera setup with a high-resolution main sensor, offering excellent photography and videography. Powered by the latest Snapdragon 8 Gen 3 chipset (or Exynos, depending on the region), it ensures top-notch performance, seamless multitasking, and 5G connectivity. The S24 Ultra also includes a long-lasting battery, S Pen support, and IP68 water and dust resistance, making it a versatile and high-performance device for tech enthusiasts.",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: samsungS24U,
+        images: [
+          samsungS24U
         ]
       },
       // Additional 28 products would follow the same structure, covering more smartphones, cameras, freezers, music players, and Electronics.
