@@ -16,6 +16,75 @@ import iPhone11Image1 from '../assets/images/Iphone/11/image1.jpg';
 import iPhone11Image2 from '../assets/images/Iphone/11/image2.jpg';
 import iPhone11Image3 from '../assets/images/Iphone/11/image3.jpg';
 
+// iPhone 11 Images
+import iPhone13ProImage1 from '../assets/images/Iphone/13pro/image1.jpg';
+import iPhone13ProImage2 from '../assets/images/Iphone/13pro/image2.jpg';
+import iPhone13ProImage3 from '../assets/images/Iphone/13pro/image3.jpg';
+import iPhone13ProImage4 from '../assets/images/Iphone/13pro/image4.jpg';
+
+// iPhone 11 Images
+import iPhone15Image1 from '../assets/images/Iphone/15/image1.jpg';
+import iPhone15Image2 from '../assets/images/Iphone/15/image2.jpg';
+import iPhone15Image3 from '../assets/images/Iphone/15/image3.jpg';
+import iPhone15Image4 from '../assets/images/Iphone/15/image4.jpg';
+import iPhone15Image5 from '../assets/images/Iphone/15/image5.jpg';
+
+
+import iPhone16Image1 from '../assets/images/Iphone/16/image1.jpg';
+import iPhone16Image2 from '../assets/images/Iphone/16/image2.jpg';
+import iPhone16Image3 from '../assets/images/Iphone/16/image3.jpg';
+import iPhone16Banner from '../assets/images/Iphone/16/banner.jpg';
+
+// iPhone 11 Images
+import iPhone14Image1 from '../assets/images/Iphone/14/image1.jpg';
+import iPhone14Image2 from '../assets/images/Iphone/14/image2.jpg';
+
+// import iPhone11Image3 from '../assets/images/Iphone/11/image3.jpg';
+// // iPhone 11 Images
+// import iPhone11Image1 from '../assets/images/Iphone/11/image1.jpg';
+// import iPhone11Image2 from '../assets/images/Iphone/11/image2.jpg';
+// import iPhone11Image3 from '../assets/images/Iphone/11/image3.jpg';
+
+
+import iPhone14proBanner1 from '../assets/images/Iphone/14pro/banner.jpg';
+import iPhone14proBanner2 from '../assets/images/Iphone/14pro/banner2.jpg';
+import iPhone14proBanner3 from '../assets/images/Iphone/14pro/banner3.jpg';
+import iPhone14proImage1 from '../assets/images/Iphone/14pro/image1.jpg';
+import iPhone14proImage2 from '../assets/images/Iphone/14pro/image2.jpg';
+import iPhone14proImage3 from '../assets/images/Iphone/14pro/image3.jpg';
+import iPhone14proImage4 from '../assets/images/Iphone/14pro/image4.jpg';
+
+import ps4Banner from '../assets/images/gaming/ps4/banner.jpg';
+import ps4Image2 from '../assets/images/gaming/ps4/image2.jpg';
+import ps4Image3 from '../assets/images/gaming/ps4/image3.jpg';
+import ps4Image1 from '../assets/images/gaming/ps4/image1.jpg';
+
+import ps5Image1 from '../assets/images/gaming/ps5/image1.jpg';
+import ps5Image2 from '../assets/images/gaming/ps5/image2.jpg';
+import ps5Image3 from '../assets/images/gaming/ps5/image3.jpg';
+import ps5Image4 from '../assets/images/gaming/ps5/image4.jpg';
+import ps5Image5 from '../assets/images/gaming/ps5/image5.jpg';
+
+
+import case1 from '../assets/images/case/image1.jpg';
+import case2 from '../assets/images/case/image2.jpg';
+import case3 from '../assets/images/case/image3.jpg';
+
+
+import nikeshoeimage1 from '../assets/images/fashion/shoe/first/image1.jpg';
+import nikeshoeimage2 from '../assets/images/fashion/shoe/first/image2.jpg';
+import nikeshoeimage3 from '../assets/images/fashion/shoe/first/image3.jpg';
+import nikeshoeimage4 from '../assets/images/fashion/shoe/first/image4.jpg';
+
+
+import jordanImage1 from '../assets/images/fashion/shoe/second/image3.jpg';
+import jordanImage2 from '../assets/images/fashion/shoe/second/image4.jpg';
+import jordanImage3 from '../assets/images/fashion/shoe/second/image6.jpg';
+import jordanImage4 from '../assets/images/fashion/shoe/second/image5.jpg';
+
+
+
+
 // Sony Mirrorless Camera Images
 import camera1 from '../assets/images/camera/image1.jpg';
 import camera2 from '../assets/images/camera/image2.jpg';
@@ -249,12 +318,183 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
           samsungS24U
         ]
       },
+      {
+        id: 14,
+        title: "Iphone 14",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: iPhone14Image1,
+        images: [
+          iPhone14Image1,
+          iPhone14Image2
+        ]
+      },
+      {
+        id: 14,
+        title: "Iphone 14 pro",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: iPhone14proImage1,
+        images: [
+          iPhone14proImage2,
+          iPhone14proImage3,
+          iPhone14proImage4,
+          
+        ]
+      },
+      {
+        id: 15,
+        title: "Iphone 15",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: iPhone15Image1,
+        images: [
+          iPhone15Image2,
+          iPhone15Image3,
+          iPhone15Image4,
+
+          
+        ]
+      },
+      {
+        id: 16,
+        title: "Iphone 16",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: iPhone16Image1,
+        images: [
+          iPhone16Image2,
+          iPhone16Image3,
+
+          
+        ]
+      },
+      {
+        id: 17,
+        title: "Stylish Shoe",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: nikeshoeimage1,
+        images: [
+          nikeshoeimage2,
+          nikeshoeimage2,
+          nikeshoeimage3,
+
+          
+
+          
+        ]
+      },
+      {
+        id: 18,
+        title: "Fashion Shoe",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: jordanImage1,
+        images: [
+            jordanImage2,
+            jordanImage3,
+            jordanImage4
+
+          
+
+          
+        ]
+      },  {
+        id: 19,
+        title: "Iphone 13 promax",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: iPhone13ProImage1,
+        images: [
+          iPhone13ProImage2,
+          iPhone13ProImage3,
+          iPhone13ProImage4,
+
+          
+
+          
+        ]
+      },  {
+        id: 20,
+        title: "PS4",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: ps4Image1,
+        images: [
+          ps4Image2,
+          ps4Image3,
+    
+          
+
+          
+        ]
+      },  {
+        id: 21,
+        title: "PS5",
+        description: "",
+        price: 1500,
+        discountPercentage: 10,
+        rating: 4.9,
+        stock: 40,
+        brand: "Samsung",
+        category: "SmartPhones",
+        thumbnail: ps5Image1,
+        images: [
+          ps5Image2,
+          ps5Image3,
+          ps5Image4,
+          ps5Image5
+
+          
+
+          
+        ]
+      },
       // Additional 28 products would follow the same structure, covering more smartphones, cameras, freezers, music players, and Electronics.
     ]
   
 
 export const Phoneimages =  [
-         iPhone13Image1, iPhone12Image1, camera2, samsungTv2
+         iPhone13Image1, iPhone12Image1, camera2, samsungTv2, ps4Banner, iPhone14proBanner1
         ]
-  
-        
