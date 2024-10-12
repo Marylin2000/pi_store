@@ -74,9 +74,8 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
 
   const finalizeOrder = () => {
     clearCart();
+    console.log("done")
     setmodal(false);
-    setShowPlacingOrderModal(false); // Hide placing order modal after 5 seconds
-    Navigate("/")
 
     
     // Show SweetAlert2 confirmation

@@ -36,7 +36,7 @@ const PaymentPage = () => {
           <div className="space-y-4">
             <div className="border p-4 rounded-lg flex items-center justify-between">
               <div>
-                =<h2 className="font-semibold">Scan QR code</h2>
+                <h2 className="font-semibold">Scan QR code</h2>
                 <p>Scan wallet QR code to pay</p>
                 <button
                   onClick={() => handleSelectMethod("QR")}
