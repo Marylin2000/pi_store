@@ -134,21 +134,7 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
 
 
    export const  products =  [
-      {
-        id: 1,
-        title: "iPhone 13",
-        description: "Latest Apple smartphone with A15 Bionic chip and 5G support.",
-        price: 999,
-        discountPercentage: 5.5,
-        rating: 4.8,
-        stock: 150,
-        brand: "Apple",
-        category: "smartphones",
-        thumbnail:iPhone13Image1,
-        images: [
-         iPhone13Image2,iPhone13Image3,iPhone13Image4
-        ]
-      },
+     
       {
         id: 2,
         title: "iPhone 12",
@@ -321,12 +307,12 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
       {
         id: 14,
         title: "Iphone 14",
-        description: "",
+        description: "The iPhone 14 is a sleek and powerful smartphone featuring a 6.1-inch Super Retina XDR display for vibrant visuals. It is powered by Apple’s A15 Bionic chip, delivering fast performance and efficient multitasking. The device includes an advanced dual-camera system for stunning photos and videos, Night mode, and 5G connectivity for faster browsing. With a durable Ceramic Shield front, water and dust resistance (IP68), and all-day battery life, the iPhone 14 offers a seamless and reliable user experience in a compact, stylish design.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: iPhone14Image1,
         images: [
@@ -335,14 +321,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         ]
       },
       {
-        id: 14,
+        id: 15,
         title: "Iphone 14 pro",
-        description: "",
+        description: "The iPhone 14 Pro is a premium smartphone with a 6.1-inch Super Retina XDR display, featuring ProMotion technology for a smooth 120Hz refresh rate. It is powered by the advanced A16 Bionic chip, providing exceptional speed and efficiency. The device boasts a versatile triple-camera system, including a 48MP main sensor, ultra-wide, and telephoto lenses, enabling high-quality photos, 4K video recording, and impressive low-light performance. The iPhone 14 Pro introduces the Dynamic Island for notifications and multitasking, has an always-on display, and offers 5G connectivity. With a durable Ceramic Shield, IP68 water and dust resistance, and long battery life, it combines cutting-edge technology with a sleek, modern design.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: iPhone14proImage1,
         images: [
@@ -353,14 +339,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         ]
       },
       {
-        id: 15,
+        id: 16,
         title: "Iphone 15",
-        description: "",
+        description: "The iPhone 15 is a sleek and powerful device featuring a 6.1-inch Super Retina XDR display for crisp and vibrant visuals. It is powered by the A16 Bionic chip, ensuring fast performance and efficient multitasking. The iPhone 15 introduces a refined dual-camera system with advanced photographic features like Night mode and 4K video recording for stunning, detailed shots. It supports USB-C for faster charging and improved compatibility. The phone offers 5G connectivity for fast downloads and smooth streaming, and it comes with a durable Ceramic Shield, IP68 water and dust resistance, and an all-day battery life for a reliable, premium smartphone experience.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: iPhone15Image1,
         images: [
@@ -372,14 +358,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         ]
       },
       {
-        id: 16,
+        id: 17,
         title: "Iphone 16",
-        description: "",
+        description: "The iPhone 16 is a next-generation smartphone featuring a 6.1-inch Super Retina XDR OLED display with ProMotion technology for a smooth 120Hz refresh rate. It is powered by the advanced A17 Bionic chip, ensuring lightning-fast performance and efficient multitasking. The device offers a dual-camera system with enhanced low-light capabilities and AI-powered photo features. It supports USB-C charging and 5G connectivity for ultra-fast downloads. With a durable Ceramic Shield front, IP68 water and dust resistance, and all-day battery life, the iPhone 16 combines cutting-edge technology and elegant design for a premium user experience.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: iPhone16Image1,
         images: [
@@ -390,14 +376,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         ]
       },
       {
-        id: 17,
+        id: 18,
         title: "Stylish Shoe",
         description: "",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: nikeshoeimage1,
         images: [
@@ -411,14 +397,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
         ]
       },
       {
-        id: 18,
+        id: 19,
         title: "Fashion Shoe",
         description: "",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: jordanImage1,
         images: [
@@ -431,14 +417,14 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
           
         ]
       },  {
-        id: 19,
+        id: 20,
         title: "Iphone 13 promax",
         description: "",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
+        brand: "Apple",
         category: "SmartPhones",
         thumbnail: iPhone13ProImage1,
         images: [
@@ -451,15 +437,15 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
           
         ]
       },  {
-        id: 20,
+        id: 21,
         title: "PS4",
-        description: "",
+        description: "The PlayStation 4 (PS4) is Sony's iconic gaming console, known for its powerful performance and diverse game library. It features a custom AMD processor and advanced graphics capabilities, offering immersive gaming experiences with stunning visuals. The PS4 supports Blu-ray playback, streaming services, and digital downloads, making it an all-in-one entertainment system. It also includes the DualShock 4 wireless controller, providing intuitive and responsive gameplay. With access to exclusive titles like The Last of Us Part II, God of War, and Horizon Zero Dawn, the PS4 remains a popular and versatile console for gamers of all levels.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
-        category: "SmartPhones",
+        brand: "Sony",
+        category: "Gaming",
         thumbnail: ps4Image1,
         images: [
           ps4Image2,
@@ -470,15 +456,15 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
           
         ]
       },  {
-        id: 21,
+        id: 22,
         title: "PS5",
-        description: "",
+        description: "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
         price: 1500,
         discountPercentage: 10,
         rating: 4.9,
         stock: 40,
-        brand: "Samsung",
-        category: "SmartPhones",
+        brand: "Sony",
+        category: "Gaming",
         thumbnail: ps5Image1,
         images: [
           ps5Image2,
@@ -496,5 +482,5 @@ import lgMonitorImage3 from '../assets/images/Tv/image3.jpg';
   
 
 export const Phoneimages =  [
-         iPhone13Image1, iPhone12Image1, camera2, samsungTv2, ps4Banner, iPhone14proBanner1
+         iPhone13Image1, iPhone12Image1, camera2, samsungTv2, ps4Banner, iPhone14proBanner1,  iPhone14proBanner2,iPhone14proBanner3,
         ]
