@@ -6,9 +6,24 @@ import { products } from "../constants/products";
 
 // Example local products array (you can replace this with your actual data)
 const localProducts = [
-  { id: 101, title: "Local Product 1", description: "Description for local product 1", image: "https://via.placeholder.com/300x200" },
-  { id: 102, title: "Local Product 2", description: "Description for local product 2", image: "https://via.placeholder.com/300x200" },
-  { id: 103, title: "Local Product 3", description: "Description for local product 3", image: "https://via.placeholder.com/300x200" },
+  {
+    id: 101,
+    title: "Local Product 1",
+    description: "Description for local product 1",
+    image: "https://via.placeholder.com/300x200",
+  },
+  {
+    id: 102,
+    title: "Local Product 2",
+    description: "Description for local product 2",
+    image: "https://via.placeholder.com/300x200",
+  },
+  {
+    id: 103,
+    title: "Local Product 3",
+    description: "Description for local product 3",
+    image: "https://via.placeholder.com/300x200",
+  },
   // Add more products as needed
 ];
 
@@ -26,11 +41,13 @@ const SearchResults = () => {
 
         try {
           // Fetch results from the API
-          const apiResponse = await axios.get(`https://dummyjson.com/products/search?q=${query}`);
+          const apiResponse = await axios.get(
+            `https://dummyjson.com/products/search?q=${query}`
+          );
           const apiResults = apiResponse.data.products;
 
           // Filter local products based on the query
-        const filteredLocalProducts = products.filter((product) =>
+          const filteredLocalProducts = products.filter((product) =>
             product.title.toLowerCase().includes(query.toLowerCase())
           );
 

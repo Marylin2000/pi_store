@@ -7,8 +7,8 @@ import { useUser } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 
 function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
-  const {user} = useUser()
-  const {  clearCart } = useContext(CartContext);
+  const { user } = useUser();
+  const { clearCart } = useContext(CartContext);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showConfirmPaymentModal, setShowConfirmPaymentModal] = useState(false);
@@ -16,7 +16,9 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
   const [verificationFailed, setVerificationFailed] = useState(false);
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showPlacingOrderModal, setShowPlacingOrderModal] = useState(false);
-  const [deliveryLocation, setDeliveryLocation] = useState("Your delivery address here"); // Set your location here
+  const [deliveryLocation, setDeliveryLocation] = useState(
+    "Your delivery address here"
+  ); // Set your location here
 
   useEffect(() => {
     if (modal) {
@@ -46,46 +48,43 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
   const confirmPayment = () => {
     setShowConfirmPaymentModal(false);
     setShowVerification(true);
-  
+
     // Check if totalPrice is less than or equal to zero
     if (totalPrice <= 0) {
       setVerificationFailed(true); // Set verificationFailed to true
       setShowVerification(false); // Hide verification modal
       return; // Exit the function to prevent further execution
     }
-  
+
     // Proceed with the normal flow if totalPrice is valid
     setTimeout(() => {
       setShowVerification(false);
       confirmLocation(); // Show confirm location modal after placing order modal is hidden
-  
+
       setTimeout(() => {
         setShowPlacingOrderModal(false); // Show placing order modal
         finalizeOrder();
       }, 5000);
     }, 5000); // Wait 5 seconds for verification
   };
-  
 
   const confirmLocation = () => {
     setShowLocationModal(true); // Show confirm location modal
-    
   };
 
   const finalizeOrder = () => {
     clearCart();
-    console.log("done")
+    console.log("done");
     setmodal(false);
 
-    
     // Show SweetAlert2 confirmation
     Swal.fire({
-      icon: 'error',
-      title: 'An Error occured',
-      text: 'An Error encountered while placing your order',
-      confirmButtonText: 'OK',
+      icon: "error",
+      title: "An Error occured",
+      text: "An Error encountered while placing your order",
+      confirmButtonText: "OK",
     });
-    
+
     // Proceed to place order and save it using the location and cart items
   };
 
@@ -123,10 +122,11 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
           </div>
         )}
         {verificationFailed && (
-        
           <div className="fixed inset-0 flex items-center justify-center bg-black/50">
             <div className="bg-white p-6 rounded-md">
-              <h3 className="text-lg  text-red-600 font-semibold">Payment Verification Failed</h3>
+              <h3 className="text-lg  text-red-600 font-semibold">
+                Payment Verification Failed
+              </h3>
               <p>Price must be greater the 0pi</p>
               <button
                 onClick={() => setVerificationFailed(false)}
@@ -136,7 +136,6 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
               </button>
             </div>
           </div>
-        
         )}
         {showCancelModal && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/50">
@@ -185,7 +184,9 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
         {showLocationModal && ( // Confirm Location Modal
           <div className="fixed inset-0 flex items-center justify-center bg-black/50">
             <div className="bg-white p-6 rounded-md">
-              <h3 className="text-lg font-semibold">Confirm Delivery Location</h3>
+              <h3 className="text-lg font-semibold">
+                Confirm Delivery Location
+              </h3>
               <p>Are you ordering to this location?</p>
               <p className="text-blue-500 mt-2">{user?.address}</p>
               <div className="flex justify-end mt-4">
@@ -198,7 +199,7 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
                 <button
                   onClick={() => {
                     setShowLocationModal(false); // Hide the location modal
-                    setShowPlacingOrderModal(true)
+                    setShowPlacingOrderModal(true);
                   }}
                   className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
                 >

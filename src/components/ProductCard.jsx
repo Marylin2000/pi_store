@@ -5,7 +5,7 @@ import AddToCart from "./AddToCart";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="p-4 bg-white cursor-pointer h-fit relative rounded-lg shadow-sm flex flex-col items-center hover:shadow-lg transition-all duration-300 ease-in-out">
+    <div className="p-4 bg-[#e3ecf5] cursor-pointer h-fit relative rounded-lg shadow-sm flex flex-col items-center hover:shadow-lg transition-all duration-300 ease-in-out">
       {/* Product Image */}
       <Link to={`/product/${product.id}`}>
         <img
@@ -17,7 +17,9 @@ const ProductCard = ({ product }) => {
 
       {/* Product Title */}
       <h2 className="mt-3 text-sm font-semibold text-center text-gray-800">
-        {product.title.length > 20 ? `${product.title.slice(0, 20)}...` : product.title}
+        {product.title.length > 20
+          ? `${product.title.slice(0, 20)}...`
+          : product.title}
       </h2>
 
       {/* Product Price */}

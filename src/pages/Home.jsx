@@ -11,6 +11,11 @@ import Carousel from "../components/Carousel";
 import { categories } from "../constants/categories";
 import CategoryCard from "../components/CategoryCard";
 import NewArrival from "../components/NewArrival";
+import SpecialDeal from "../components/SpeciaDeal";
+import BannerCard from "../components/BannerCard";
+import smartWatch from "../assets/images/newArrival/smartWatch.png";
+import lotion from "../assets/images/newArrival/lotion.png";
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -71,23 +76,28 @@ const Home = () => {
 
   return (
     <div className="container  mx-auto p-4">
+      <div className="my-2"> 
+
+      <SpecialDeal />
+      </div>
+
       <Carousel images={Phoneimages} interval={2000} />
 
       <div className="flex gap-4 no-scrollbar w-full overflow-x-scroll p-4">
-      {categories.map((category, index) => (
-        <div key={index} className="flex-shrink-0">
-          {/* Category Title Above the Card */}
-          <div className="mb-2">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-700">
-              {category.name}
-            </h2>
+        {categories.map((category, index) => (
+          <div key={index} className="flex-shrink-0">
+            {/* Category Title Above the Card */}
+            <div className="mb-2">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-700">
+                {category.name}
+              </h2>
+            </div>
+            {/* Category Card */}
+            <CategoryCard category={category} />
           </div>
-          {/* Category Card */}
-          <CategoryCard category={category} />
-        </div>
-      ))}
-    </div>
-    
+        ))}
+      </div>
+
       {/* Product Grid Layout */}
       <CategoryProducts category="vehicle" />
       <CategoryProducts category="laptops" />
@@ -99,16 +109,35 @@ const Home = () => {
       <p>Decorations for your Home</p>
       <MoreProducts category={"home-decoration"} />
       <p>Skin care</p>
+          <BannerCard image={lotion} color={"4"} product={"Skin Care"}/>
       <MoreProducts category={"skin-care"} />
-      <p>Women Jeweleries</p>
+
+          <div className='flex items-center p-2 my-2 bg-grad_11 w-full justify-between rounded-md'>
+        <h2 className="text-xl font-semibold text-white capitalize">
+       Jewellery 
+        </h2>
+        </div>
       <MoreProducts category={"womens-jewellery"} />
-      <p>For men</p>
+      <div className='flex items-center p-2 my-2 bg-grad_2 w-full justify-between rounded-md'>
+        <h2 className="text-xl font-semibold text-white capitalize">
+       Male Shoes
+        </h2>
+        </div>
       <MoreProducts category={"mens-shoes"} />
-      <p>Furnitures</p>
+      <div className='flex items-center p-2 my-2 bg-grad_8 w-full justify-between rounded-md'>
+        <h2 className="text-xl font-semibold text-white capitalize">
+       Furnitures
+        </h2>
+        </div>
       <MoreProducts category={"furniture"} />
-      <p>More</p>
+      <div className='flex items-center p-2 my-2 bg-grad_6 w-full justify-between rounded-md'>
+        <h2 className="text-xl font-semibold text-white capitalize">
+       More 
+        </h2>
+        </div>
       <FakeProducts />
-      <FakeCategories category={"electronics"} />
+      <FakeCategories category={"electronics"} product={"Smart Watches"} />
+      <BannerCard image={smartWatch} product={"smart Watches"} color={"1"}/>
       <LocalProducts />
     </div>
   );

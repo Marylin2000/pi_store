@@ -10,7 +10,6 @@ import { useUser } from '../context/UserContext';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const { user } = useUser();
 
@@ -19,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-lg w-full fixed z-50">
+    <header className="bg-white shadow-lg w-full sticky top-0 z-50">
       <div className="flex justify-between items-center p-4 bg-indigo-600 text-white">
         {/* Left Section (Menu and Logo) */}
         <div className="flex items-center">

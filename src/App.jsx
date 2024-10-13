@@ -21,6 +21,7 @@ import LocalProducts from "./components/LocalProducts";
 import LocalPage from "./pages/LocalPage";
 import Categories from "./pages/Categories";
 import Gaming from "./components/Gaming";
+import Help from "./pages/Help";
 
 const App = () => {
   return (
@@ -33,7 +34,6 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/categories/:category" element={<Categories />} />
-
             <Route path="/cart" element={<CartPage />} />
             <Route path="/payment/:totalPrice" element={<PaymentPage />} />
             <Route path="/signup" element={<Signup />} />
@@ -41,14 +41,14 @@ const App = () => {
             <Route path="/user" element={<User />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/search" element={<SearchResults />} />
+            <Route path="/help" element={<Help />} />
             <Route
               path="/category/:category/products"
               element={<CategoryProductsPage />}
-            />{" "}
+            />
             {/* New Route */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/gaming" element={<Gaming />} />
-
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/products/:id" element={<FakeProductPage />} />
             <Route path="/item/:id" element={<LocalPage />} />

@@ -6,7 +6,7 @@ import AddToCart from "./AddToCart";
 const FakeCard = ({ product }) => {
 
     return (
-      <div className="py-2 bg-[#f5f5f5] cursor-pointer h-fit lg:h-[250px]  relative rounded-md flex flex-col items-center  hover:shadow-lg ">
+      <div className="py-2 bg-[#e3ecf5] cursor-pointer h-fit lg:h-[250px]  relative rounded-md flex flex-col items-center  hover:shadow-lg ">
         <Link to={`/product/${product.id}`}>
           <img
             src={product.image}

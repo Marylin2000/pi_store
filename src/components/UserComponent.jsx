@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useUser } from "../context/UserContext";
-import { auth } from "../firebase"; 
-import { updateProfile, updateEmail, signOut } from "firebase/auth"; 
-import { uploadImage } from "../services/uploadImage"; 
+import { auth } from "../firebase";
+import { updateProfile, updateEmail, signOut } from "firebase/auth";
+import { uploadImage } from "../services/uploadImage";
 import { db } from "../firebase"; // Import Firestore
 import { ref, set, get } from "firebase/database"; // Import methods for writing data
 
@@ -19,27 +19,26 @@ const UserPage = () => {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
-    useEffect(() => {
-      if (user) {
-        const loadUserData = async () => {
-          const userRef = ref(db, `users/${user.uid}`);
-          const snapshot = await get(userRef);
-          if (snapshot.exists()) {
-            const userData = snapshot.val();
-            setFormData({
-              displayName: userData.displayName || "",
-              email: userData.email || "",
-              profileImage: userData.photoURL || "",
-              address: userData.address || "", // Load address from database
-              password: "",
-            });
-          }
-        };
-        
-        loadUserData();
-      }
-    }, [user]);
-    
+  useEffect(() => {
+    if (user) {
+      const loadUserData = async () => {
+        const userRef = ref(db, `users/${user.uid}`);
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          setFormData({
+            displayName: userData.displayName || "",
+            email: userData.email || "",
+            profileImage: userData.photoURL || "",
+            address: userData.address || "", // Load address from database
+            password: "",
+          });
+        }
+      };
+
+      loadUserData();
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -78,18 +77,18 @@ const UserPage = () => {
           alert("Please enter a valid email address.");
           return;
         }
-  
+
         // Update Firebase Authentication profile
         await updateProfile(user, {
           displayName: formData.displayName,
           photoURL: formData.profileImage,
         });
-  
+
         // Only update email if it is different
         if (user.email !== formData.email) {
           await updateEmail(user, formData.email);
         }
-  
+
         // Update Realtime Database profile
         const userRef = ref(db, `users/${user.uid}`);
         await set(userRef, {
@@ -98,7 +97,7 @@ const UserPage = () => {
           photoURL: formData.profileImage,
           address: formData.address, // Ensure address is included here
         });
-  
+
         // Update local user state
         setUser({
           ...user,
@@ -107,7 +106,7 @@ const UserPage = () => {
           photoURL: formData.profileImage,
           address: formData.address, // Update address in user state
         });
-  
+
         setEditMode(false);
         alert("Profile updated successfully!");
       }
@@ -118,7 +117,7 @@ const UserPage = () => {
       setUploading(false); // Set uploading to false after the update
     }
   };
-  
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -208,10 +207,13 @@ const UserPage = () => {
           />
           <button
             type="submit"
-            className={`w-full py-2 rounded-md text-white ${uploading ? "bg-gray-400" : "bg-blue-600"}`}
+            className={`w-full py-2 rounded-md text-white ${
+              uploading ? "bg-gray-400" : "bg-blue-600"
+            }`}
             disabled={uploading}
           >
-            {uploading ? "Uploading..." : "Update Profile"} {/* Change button text */}
+            {uploading ? "Uploading..." : "Update Profile"}{" "}
+            {/* Change button text */}
           </button>
         </form>
         <button

@@ -14,20 +14,19 @@ const SearchBar = () => {
       navigate(`/search?query=${searchQuery}`);
     }
   };
-
   return (
-    <div className="p-2 flex justify-center">
+    <div className="flex justify-center">
       <div className="relative w-full max-w-lg">
         <input
           type="text"
           value={searchQuery}
           onChange={handleSearchChange}
           placeholder="Search for products..."
-          className="w-full p-3 pl-4 pr-16 text-sm rounded-full border border-gray-300 shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+          className="w-full p-3 pl-4 pr-16 text-sm rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
         />
         <button
           onClick={handleSearchClick}
-          className="absolute right-0 top-0 bottom-0 bg-indigo-600 text-white py-2 px-4 m-1 rounded-full hover:bg-indigo-700 focus:bg-indigo-500 transition"
+          className="absolute right-0 top-0 bottom-0 bg-indigo-600 text-white py-2 px-4 m-1 rounded-lg hover:bg-indigo-700 focus:bg-indigo-500 transition"
         >
           Search
         </button>

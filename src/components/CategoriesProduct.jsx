@@ -25,7 +25,7 @@ const CategoryProducts = ({ category }) => {
   return (
     <div className="mb-6">
       {/* Category Header */}
-      <div className='flex items-center p-2 my-2 bg-yellow-500 w-full justify-between rounded-md'>
+      <div className='flex items-center p-2 my-2 bg-red-500 w-full justify-between rounded-md'>
         <h2 className="text-xl font-semibold text-white capitalize">
           {category} Deals
         </h2>
