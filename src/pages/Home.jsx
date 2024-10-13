@@ -10,6 +10,7 @@ import { Phoneimages } from "../constants/products";
 import Carousel from "../components/Carousel";
 import { categories } from "../constants/categories";
 import CategoryCard from "../components/CategoryCard";
+import NewArrival from "../components/NewArrival";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -72,21 +73,27 @@ const Home = () => {
     <div className="container  mx-auto p-4">
       <Carousel images={Phoneimages} interval={2000} />
 
-      <div className="flex flex-wrap  gap-5">
-        {categories.map((category, index) => {
-          return (
-            <div key={index} className="my-4">
-              <h2 className="text-2xl font-bold">{category.name}</h2>
-              <CategoryCard category={category} />
-            </div>
-          );
-        })}
-      </div>
+      <div className="flex gap-4 no-scrollbar w-full overflow-x-scroll p-4">
+      {categories.map((category, index) => (
+        <div key={index} className="flex-shrink-0">
+          {/* Category Title Above the Card */}
+          <div className="mb-2">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-700">
+              {category.name}
+            </h2>
+          </div>
+          {/* Category Card */}
+          <CategoryCard category={category} />
+        </div>
+      ))}
+    </div>
+    
       {/* Product Grid Layout */}
       <CategoryProducts category="vehicle" />
       <CategoryProducts category="laptops" />
       <CategoryProducts category="motorcycle" />
       <CategoryProducts category="tablets" />
+      <NewArrival />
       <CategoryProducts category="mens-watches" />
       <CategoryProducts category="vehicle" />
       <p>Decorations for your Home</p>

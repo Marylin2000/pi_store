@@ -48,7 +48,7 @@ function AddToCart({ product }) {
   return (
     <button
       onClick={() => handleAddToCart(product)} // Wrap in arrow function
-      className="mt-3 bg-indigo-500 text-white text-xs py-2 px-4 rounded-md hover:bg-indigo-600 w-fit focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      className="mt-3 bg-[#f39c12] text-white text-xs py-2 px-4 rounded-md hover:bg-indigo-600 w-fit focus:outline-none focus:ring-2 focus:ring-indigo-500"
     >
       Add to cart
     </button>

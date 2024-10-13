@@ -23,38 +23,36 @@ const CategoryProducts = ({ category }) => {
   };
 
   return (
-    <div className="">
-        <div className='flex items-center p-2 my-2  bg-indigo-600 w-full  justify-between'>
+    <div className="mb-6">
+      {/* Category Header */}
+      <div className='flex items-center p-2 my-2 bg-yellow-500 w-full justify-between rounded-md'>
+        <h2 className="text-xl font-semibold text-white capitalize">
+          {category} Deals
+        </h2>
+        {!seeMore && products.length > 3 && (
+          <Link to={`/category/${category}/products`} className="text-sm font-medium text-white hover:text-gray-100 transition">
+            See More
+          </Link>
+        )}
+      </div>
 
-      <h2 className="text-xl font-semibold text-slate-100 "> {category.split("")} Deals</h2>
-      {!seeMore && products.length > 3 && (
-        <Link to={`/category/${category}/products`} className="flex items-center text-white ">
-          See More
-        </Link>
-      )}
-        </div>
-      
       {/* Horizontal Scroll Container */}
-      <div className="flex overflow-x-auto space-x-4 no-scrollbar">
+      <div className="flex overflow-x-auto space-x-4 no-scrollbar py-4">
         {visibleProducts.map((product) => (
-          <Link key={product.id} to={`/product/${product.id}`} className="min-w-[250px] flex-shrink-0 border p-4 rounded-lg shadow-md">
+          <Link key={product.id} to={`/product/${product.id}`} className="min-w-[250px] flex-shrink-0 border bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
             <img 
               src={product.thumbnail} 
               alt={product.title} 
               width={150}
-              className=" object-cover mb-4 rounded-lg" 
+              className="object-cover mb-4 rounded-lg h-[120px]" 
             />
-            <h3 className="text-xs  font-medium">{product.title}</h3>
-            <p className="text-gray-600">
-            {(Math.round(product.price) * 0.15).toLocaleString()} Pi
-
+            <h3 className="text-sm font-medium mb-2">{product.title.slice(0, 20)}...</h3>
+            <p className="text-gray-500">
+              {(Math.round(product.price) * 0.15).toLocaleString()} Pi
             </p>
           </Link>
         ))}
       </div>
-      
-      {/* "See More" button */}
-      
     </div>
   );
 };

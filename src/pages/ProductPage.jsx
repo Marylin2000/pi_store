@@ -182,7 +182,7 @@ const ProductPage = () => {
             </span>
           </div>
         </div>
-        <div className="bg-orange-500 my-4 py-1 flex items-center justify-center text-white font-bold rounded-md">
+        <div className="bg-[#e74c3c] my-4 py-1 hover:bg-[#c0392b] flex items-center justify-center text-white font-bold rounded-md">
         <Link
           to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}
          // Wrap in arrow function

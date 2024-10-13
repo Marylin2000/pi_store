@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
   return (
-    <div className="bg-white w-[25vw] h-[20vh] relative shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <Link to={category.link} >
+    <div className="bg-white min-w-[150px] w-[15vw] h-[25vh] relative shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 hover:scale-105 transform">
+      <Link to={category.link} className="h-full">
+        {/* Image section */}
         <img
           src={category.image}
           alt={category.title}
-          className="  w-full object-cover"
+          className="h-[65%] w-full object-cover rounded-t-lg"
         />
-        <div className="p-4">
-          <h3 className=" font-semibold text-sm text-gray-800">
+        {/* Text section */}
+        <div className="p-3 h-[35%] flex justify-center items-center bg-white">
+          <h3 className="text-sm font-semibold text-gray-800 text-center">
             {category.title}
           </h3>
         </div>
