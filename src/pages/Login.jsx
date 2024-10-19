@@ -29,7 +29,9 @@ const Login = () => {
 
   return (
 
-      <AuthForm type="login" onSubmit={handleLogin} />
+      <AuthForm type="login" 
+      // onSubmit={handleLogin}
+       />
      
   );
 };

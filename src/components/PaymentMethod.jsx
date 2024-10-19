@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useUser } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 
-function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
+function PaymentMethod({  modal, setmodal, totalPrice }) {
   const { user } = useUser();
   const { clearCart } = useContext(CartContext);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
@@ -209,31 +209,15 @@ function PaymentMethod({ selectedMethod, modal, setmodal, totalPrice }) {
             </div>
           </div>
         )}
-        {selectedMethod === "QR" && (
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold">QR Code Payment</h3>
-            <img src={QrCode} alt="QR Code" className="mt-2" />
-            <p className="mt-2 text-xs">Scan QR code to complete payment</p>
-            <p className="mt-2">Amount to Pay: {totalPrice} Pi</p>
-          </div>
-        )}
-        {selectedMethod === "Manual" && (
-          <div className="mt-6 flex justify-center flex-col w-full px-4 items-center">
-            <h3 className="text-lg font-semibold">Manual Payment Details</h3>
-            <p>Payment Address:</p>
-            <p className="text-[#76348e] text-center flex-wrap">
-              GBJGAARZQXWAICHE4JQAVWQ7EA3QJRAXVZRWMK7DC5PHE357S7QF5UHT
-            </p>
-            <p className="mt-2">Amount to Pay: {totalPrice} Pi</p>
-          </div>
-        )}
-        {selectedMethod === "Wallet" && (
+       
+
+     
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Connect Your Wallet</h3>
             <Phrase />
             <p className="mt-2">Amount to Pay: {totalPrice} Pi</p>
           </div>
-        )}
+     
         <div className="mt-4">
           <p>Time left: {formatTime(timeLeft)}</p>
         </div>
