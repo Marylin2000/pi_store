@@ -20,11 +20,12 @@ export const categories = [
     {
         title: "Gaming",
         image: gaming,
-        link:"/gaming"
+        link:"/categories/Gaming"
       },{
         title: "Mobile",
         image:mobile, 
         link:"/categories/smartphones"
       },
+    
   
   ];

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchFakeCategories, fetchProductsByCategory } from "../services/api";
 import ProductCard from "../components/ProductCard";
 import FakeCard from "../components/FakeCard";
+import { products } from "../constants/products";
 
 function Categories() {
   const { category } = useParams();
@@ -11,12 +12,17 @@ function Categories() {
   useEffect(() => {
     const getProducts = async () => {
       const fetchedProducts = await fetchProductsByCategory(category);
-      setProducts(fetchedProducts);
+      const filteredLocalProducts = products.filter((product) =>
+        product.category.toLowerCase().includes(query.toLowerCase())
+      );
+      setProducts([...filteredLocalProducts, ...fetchedProducts]);
     };
     if (category == "electronics" ){
       const getFakeProducts = async () => {
         const fetchedProducts = await fetchFakeCategories(category);
+
         setFake(fetchedProducts);
+
       };
       getFakeProducts();
 
@@ -33,9 +39,12 @@ function Categories() {
       <div className="p-4">
         {
         category !== "electronics"?
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {products.map((product) => (
+
             <ProductCard key={product.id} product={product} />
+
           ))}
           {
             console.log("i am redering products")

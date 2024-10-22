@@ -14,13 +14,13 @@ export const categories = [
     
     {
       id: 4,
-      name: "motorcycle",
+      name: "Computers",
       description: "Everything you need for your favorite sports.",
       image: "https://example.com/images/sports.jpg"
     },
     {
       id: 5,
-      name: "Home-decoration",
+      name: "Gaming",
       description: "Home improvement tools and decor.",
       image: "https://example.com/images/home.jpg"
     },
