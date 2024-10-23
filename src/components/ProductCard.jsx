@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 font-bold text-xs absolute top-2 right-2">
-        {(Math.round(product.price) * 0.15).toLocaleString()} &pi;
+        {(Math.round(product.price) * 0.1)} &pi;
       </p>
 
       {/* Add to Cart Button */}

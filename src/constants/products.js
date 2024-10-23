@@ -102,13 +102,10 @@ import hp1 from "../assets/images/laptops/hp/image1.jpeg";
 import hp2 from "../assets/images/laptops/hp/image2.jpeg";
 import hp3 from "../assets/images/laptops/hp/image3.jpeg";
 
-
 import msi1 from "../assets/images/laptops/msi/image1.jpeg";
 import msi2 from "../assets/images/laptops/msi/image2.jpeg";
 import msi3 from "../assets/images/laptops/msi/image3.jpeg";
 import msi4 from "../assets/images/laptops/msi/image4.jpeg";
-
-
 
 import mac_air_1 from "../assets/images/laptops/apple/air15/image1.jpg";
 
@@ -495,9 +492,9 @@ export const products = [
   },
   {
     id: 26,
-    title: "Acer Chromebook",
+    title: "Acer Chromebook 516 GE Cloud",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
+      "Acer Chromebook 516 GE Cloud Gaming Laptop | 16.0 WQXGA 2560x1600 100% sRGB 120Hz IPS | Intel Core i5-1240P | 16GB LPDDR4X | 256GB Gen 4 SSD | Wi-Fi 6E | RGB Backlit KB | Chrome OS | CBG516-1H-53TD",
     price: 1500,
     discountPercentage: 10,
     rating: 4.9,
@@ -509,9 +506,9 @@ export const products = [
   },
   {
     id: 27,
-    title: "Acer Nitro",
+    title: "Acer Nitro V Gaming Laptop",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
+      "Acer Nitro V Gaming Laptop | Intel Core i5-13420H Processor | NVIDIA GeForce RTX 4050 Laptop GPU | 15.6 FHD IPS 144Hz Display | 8GB DDR5 | 512GB Gen 4 SSD | WiFi 6 | Backlit KB | ANV15-51-51H9",
     price: 1500,
     discountPercentage: 10,
     rating: 4.9,
@@ -523,10 +520,10 @@ export const products = [
   },
   {
     id: 28,
-    title: "Alien Ware",
+    title: "Alienware M18 R2 Gaming Laptop",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
-    price: 1500,
+      "Alienware M18 R2 Gaming Laptop - 18 QHD+ 165Hz 3ms Display, Intel Core i9-14900HX, 32GB DDR5 RAM, 1TB SSD, NVIDIA GeForce RTX 4080 12 GB GDDR6, Windows 11 Home, Onsite Service - Dark Metallic Moon",
+    price: 150,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
@@ -593,24 +590,24 @@ export const products = [
   },
   {
     id: 33,
-    title: "Asus Rog",
+    title: "ASUS ROG Strix G16 (2024)",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
-    price: 1500,
+      "ASUS ROG Strix G16 (2024) Gaming Laptop, 16” 16:10 FHD 165Hz Display, NVIDIA® GeForce RTX™ 4060, Intel Core i7-13650HX, 16GB DDR5, 1TB PCIe Gen4 SSD, Wi-Fi 6E, Windows 11, G614JV-AS74",
+    price: 120,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
     brand: "Asus",
     category: "Computer",
     thumbnail: asusRog1,
-    images: [asusRog1, asusRog3, asusRog4,asusRog2],
+    images: [asusRog1, asusRog3, asusRog4, asusRog2],
   },
   {
     id: 34,
-    title: "MSI",
+    title: "MSI Katana",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
-    price: 1500,
+      "MSI Katana 15 15.6” 165Hz QHD Gaming Laptop: Intel Core i7-13620H, NVIDIA Geforce RTX 4070, 16GB DDR5, 1TB NVMe SSD, Cooler Boost 5, Win 11: Black B13VGK-2000US",
+    price: 122,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
@@ -621,9 +618,9 @@ export const products = [
   },
   {
     id: 35,
-    title: "Hp",
+    title: "HP Victus",
     description:
-      "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
+      "HP Victus 15.6 inch Laptop, FHD 144Hz Display, Intel Core i5-12450H, 8 GB RAM, 512 GB SSD, NVIDIA GeForce RTX 2050 GPU (4 GB Dedicated), Windows 11 Home, 15-fa1029nr (2024)",
     price: 1500,
     discountPercentage: 10,
     rating: 4.9,

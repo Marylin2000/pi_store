@@ -109,7 +109,7 @@ const Home = () => {
       <p>Decorations for your Home</p>
       <MoreProducts category={"home-decoration"} />
       <p>Skin care</p>
-          <BannerCard image={lotion} color={"3"} product={"Skin Care"}/>
+          <BannerCard image={lotion} color={"1"} product={"Skin Care"}/>
       <MoreProducts category={"skin-care"} />
 
           <div className='flex items-center p-2 my-2 bg-grad_11 w-full justify-between rounded-md'>
@@ -136,6 +136,7 @@ const Home = () => {
         </h2>
         </div>
       <FakeProducts />
+      <NewArrival />
       <FakeCategories category={"electronics"} product={"Smart Watches"} />
       <BannerCard image={smartWatch} product={"smart Watches"} color={"1"}/>
       <LocalProducts />

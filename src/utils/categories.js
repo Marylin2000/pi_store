@@ -14,7 +14,7 @@ export const categories = [
     
     {
       id: 4,
-      name: "Computers",
+      name: "Computer",
       description: "Everything you need for your favorite sports.",
       image: "https://example.com/images/sports.jpg"
     },
