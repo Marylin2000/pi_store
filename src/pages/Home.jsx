@@ -15,7 +15,33 @@ import SpecialDeal from "../components/SpeciaDeal";
 import BannerCard from "../components/BannerCard";
 import smartWatch from "../assets/images/newArrival/smartWatch.png";
 import lotion from "../assets/images/newArrival/lotion.png";
+import ps5 from "../assets/images/gaming/ps5/image1.jpg";
+import asusGaming from "../assets/images/laptops/asus/image1.jpeg";
+import samsung from "../assets/images/samsung/s24Ultra.jpg";
 
+import { image } from "framer-motion/client";
+
+const ps5Product = {
+  id: 30,
+  title: "PlayStation 5",
+  description: "",
+
+  image: ps5,
+};
+
+const asusRog = {
+  id: 30,
+  title: "Asus Gaming pc",
+  description: "",
+  image: asusGaming,
+};
+
+const samsungUltra = {
+  id: 30,
+  title: "Samsung ultra smartphone",
+  description: "",
+  thumbnail: samsung,
+};
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -76,9 +102,8 @@ const Home = () => {
 
   return (
     <div className="container  mx-auto p-4">
-      <div className="my-2"> 
-
-      <SpecialDeal />
+      <div className="my-2">
+        <SpecialDeal />
       </div>
 
       <Carousel images={Phoneimages} interval={2000} />
@@ -103,43 +128,58 @@ const Home = () => {
       <CategoryProducts category="laptops" />
       <CategoryProducts category="motorcycle" />
       <CategoryProducts category="tablets" />
-      <NewArrival />
+      <NewArrival
+        image={ps5Product.image}
+        title={ps5Product.title}
+        id={ps5Product.id}
+        description={ps5Product.description}
+      />
       <CategoryProducts category="mens-watches" />
       <CategoryProducts category="vehicle" />
       <p>Decorations for your Home</p>
       <MoreProducts category={"home-decoration"} />
       <p>Skin care</p>
-          <BannerCard image={lotion} color={"1"} product={"Skin Care"}/>
+      <BannerCard image={lotion} color={"1"} product={"Skin Care"} />
       <MoreProducts category={"skin-care"} />
 
-          <div className='flex items-center p-2 my-2 bg-grad_11 w-full justify-between rounded-md'>
+      <div className="flex items-center p-2 my-2 bg-grad_11 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">
-       Jewellery 
+          Jewellery
         </h2>
-        </div>
+      </div>
       <MoreProducts category={"womens-jewellery"} />
-      <div className='flex items-center p-2 my-2 bg-grad_2 w-full justify-between rounded-md'>
+      <div className="flex items-center p-2 my-2 bg-grad_2 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">
-       Male Shoes
+          Male Shoes
         </h2>
-        </div>
+      </div>
       <MoreProducts category={"mens-shoes"} />
-      <div className='flex items-center p-2 my-2 bg-grad_8 w-full justify-between rounded-md'>
+      <div className="flex items-center p-2 my-2 bg-grad_8 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">
-       Furnitures
+          Furnitures
         </h2>
-        </div>
+      </div>
+      <NewArrival
+        image={asusRog.image}
+        title={asusRog.title}
+        id={asusRog.id}
+        description={asusRog.description}
+      />
+
       <MoreProducts category={"furniture"} />
-      <div className='flex items-center p-2 my-2 bg-grad_6 w-full justify-between rounded-md'>
-        <h2 className="text-xl font-semibold text-white capitalize">
-       More 
-        </h2>
-        </div>
-      <FakeProducts />
-      <NewArrival />
+      <div className="flex items-center p-2 my-2 bg-grad_6 w-full justify-between rounded-md">
+        <h2 className="text-xl font-semibold text-white capitalize">More</h2>
+      </div>
+      <FakeProducts />d
       <FakeCategories category={"electronics"} product={"Smart Watches"} />
-      <BannerCard image={smartWatch} product={"smart Watches"} color={"1"}/>
+      <BannerCard image={smartWatch} product={"smart Watches"} color={"1"} />
       <LocalProducts />
+      <NewArrival
+        image={samsungUltra.image}
+        title={samsungUltra.title}
+        id={samsungUltra.id}
+        description={samsungUltra.description}
+      />
     </div>
   );
 };
