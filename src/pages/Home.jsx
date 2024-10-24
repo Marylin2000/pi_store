@@ -15,9 +15,9 @@ import SpecialDeal from "../components/SpeciaDeal";
 import BannerCard from "../components/BannerCard";
 import smartWatch from "../assets/images/newArrival/smartWatch.png";
 import lotion from "../assets/images/newArrival/lotion.png";
-import ps5 from "../assets/images/gaming/ps5/image1.jpg";
-import asusGaming from "../assets/images/laptops/asus/image1.jpeg";
-import samsung from "../assets/images/samsung/s24Ultra.jpg";
+import ps5 from "../assets/images/newArrival/image1.png";
+import asusGaming from "../assets/images/newArrival/image2.png";
+import samsung from "../assets/images/newArrival/image3.png";
 
 import { image } from "framer-motion/client";
 
@@ -40,7 +40,7 @@ const samsungUltra = {
   id: 30,
   title: "Samsung ultra smartphone",
   description: "",
-  thumbnail: samsung,
+  image: samsung,
 };
 
 const Home = () => {
