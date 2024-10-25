@@ -453,7 +453,7 @@ export const products = [
     title: "Mobile Controller ",
     description:
       "The PlayStation 5 (PS5) is Sony’s next-generation gaming console, designed for ultra-high performance and immersive gameplay. It features a powerful custom AMD processor and GPU, delivering 4K gaming at high frame rates with ray tracing capabilities for realistic lighting and shadows. The PS5 offers lightning-fast load times with its ultra-high-speed SSD, and its Tempest 3D AudioTech provides immersive soundscapes. The console supports backward compatibility with most PS4 games and includes the innovative DualSense controller with adaptive triggers and haptic feedback for a deeper, more tactile gaming experience. The PS5's sleek design and cutting-edge technology make it a must-have for gaming enthusiasts.",
-    price: 1500,
+    price: 4,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
@@ -495,7 +495,7 @@ export const products = [
     title: "Acer Chromebook 516 GE Cloud",
     description:
       "Acer Chromebook 516 GE Cloud Gaming Laptop | 16.0 WQXGA 2560x1600 100% sRGB 120Hz IPS | Intel Core i5-1240P | 16GB LPDDR4X | 256GB Gen 4 SSD | Wi-Fi 6E | RGB Backlit KB | Chrome OS | CBG516-1H-53TD",
-    price: 1500,
+    price: 86,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
@@ -509,7 +509,7 @@ export const products = [
     title: "Acer Nitro V Gaming Laptop",
     description:
       "Acer Nitro V Gaming Laptop | Intel Core i5-13420H Processor | NVIDIA GeForce RTX 4050 Laptop GPU | 15.6 FHD IPS 144Hz Display | 8GB DDR5 | 512GB Gen 4 SSD | WiFi 6 | Backlit KB | ANV15-51-51H9",
-    price: 1500,
+    price: 110,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,
@@ -621,7 +621,7 @@ export const products = [
     title: "HP Victus",
     description:
       "HP Victus 15.6 inch Laptop, FHD 144Hz Display, Intel Core i5-12450H, 8 GB RAM, 512 GB SSD, NVIDIA GeForce RTX 2050 GPU (4 GB Dedicated), Windows 11 Home, 15-fa1029nr (2024)",
-    price: 1500,
+    price: 105,
     discountPercentage: 10,
     rating: 4.9,
     stock: 40,

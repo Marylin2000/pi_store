@@ -2,10 +2,10 @@ import React from "react";
 import ps5 from "../assets/images/newArrival/ps5.png";
 import { Link } from "react-router-dom";
 
-function NewArrival({image , description, id, title}) {
+function NewArrival({image , description, link, title}) {
   return (
     <div className="bg-grad_1 my-10 h-[414px] lg:h-[600px] lg:w-[570px] rounded-md relative flex justify-end flex-col ">
-      <Link to={`item/${id}`}>
+      <Link to={link}>
       <img
         className="absolute bottom-0 z-10 lg:w-511px lg:h-[511px]"
         src={image}

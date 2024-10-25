@@ -24,7 +24,8 @@ import { image } from "framer-motion/client";
 const ps5Product = {
   id: 30,
   title: "PlayStation 5",
-  description: "",
+  description: "/categories/Gaming",
+  link:"/categories/Gaming",
 
   image: ps5,
 };
@@ -34,6 +35,7 @@ const asusRog = {
   title: "Asus Gaming pc",
   description: "",
   image: asusGaming,
+  link:"/categories/Computer",
 };
 
 const samsungUltra = {
@@ -41,6 +43,7 @@ const samsungUltra = {
   title: "Samsung ultra smartphone",
   description: "",
   image: samsung,
+  link:"/categories/smartphones",
 };
 
 const Home = () => {
@@ -105,9 +108,7 @@ const Home = () => {
       <div className="my-2">
         <SpecialDeal />
       </div>
-
       <Carousel images={Phoneimages} interval={2000} />
-
       <div className="flex gap-4 no-scrollbar w-full overflow-x-scroll p-4">
         {categories.map((category, index) => (
           <div key={index} className="flex-shrink-0">
@@ -122,7 +123,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-
       {/* Product Grid Layout */}
       <CategoryProducts category="vehicle" />
       <CategoryProducts category="laptops" />
@@ -133,6 +133,7 @@ const Home = () => {
         title={ps5Product.title}
         id={ps5Product.id}
         description={ps5Product.description}
+        link={ps5Product.link}
       />
       <CategoryProducts category="mens-watches" />
       <CategoryProducts category="vehicle" />
@@ -141,7 +142,6 @@ const Home = () => {
       <p>Skin care</p>
       <BannerCard image={lotion} color={"1"} product={"Skin Care"} />
       <MoreProducts category={"skin-care"} />
-
       <div className="flex items-center p-2 my-2 bg-grad_11 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">
           Jewellery
@@ -163,20 +163,21 @@ const Home = () => {
         image={asusRog.image}
         title={asusRog.title}
         id={asusRog.id}
+        link={asusRog.link}
         description={asusRog.description}
       />
-
       <MoreProducts category={"furniture"} />
       <div className="flex items-center p-2 my-2 bg-grad_6 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">More</h2>
       </div>
       <FakeProducts />d
       <FakeCategories category={"electronics"} product={"Smart Watches"} />
-      <BannerCard image={smartWatch} product={"smart Watches"} color={"1"} />
+      <BannerCard image={smartWatch} product={"smart Watches"}  color={"1"} />
       <LocalProducts />
       <NewArrival
         image={samsungUltra.image}
         title={samsungUltra.title}
+        link={samsungUltra.link}
         id={samsungUltra.id}
         description={samsungUltra.description}
       />
@@ -185,3 +186,4 @@ const Home = () => {
 };
 
 export default Home;
+

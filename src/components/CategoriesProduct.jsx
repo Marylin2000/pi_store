@@ -48,7 +48,7 @@ const CategoryProducts = ({ category }) => {
             />
             <h3 className="text-sm font-medium mb-2">{product.title.slice(0, 20)}...</h3>
             <p className="text-gray-500">
-              {(Math.round(product.price) * 0.15).toLocaleString()} Pi
+              {(Math.round(product.price * 0.02)).toLocaleString()} Pi
             </p>
           </Link>
         ))}
