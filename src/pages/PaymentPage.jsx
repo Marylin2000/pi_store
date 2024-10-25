@@ -79,9 +79,9 @@ const PaymentPage = () => {
     setShowPlacingOrderModal(false)
 
     Swal.fire({
-      icon: "success",
-      title: "Order Placed Successfully",
-      text: "Your order has been placed.",
+      icon: "error",
+      title: "An Error occured ",
+      text: "Please Check and try again.",
       confirmButtonText: "OK",
     });
   };
