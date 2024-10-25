@@ -7,7 +7,7 @@ const FakeCard = ({ product }) => {
 
     return (
       <div className="py-2 bg-[#e3ecf5] cursor-pointer h-fit lg:h-[250px]  relative rounded-md flex flex-col items-center  hover:shadow-lg ">
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/products/${product.id}`}>
           <img
             src={product.image}
             alt={product.title}

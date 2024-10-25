@@ -19,7 +19,7 @@ const LocalCard = ({ product }) => {
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 top-0 font-bold right-4 absolute text-xs">
-        {(Math.round(product.price) * 0.15).toLocaleString()} &pi;
+        {(Math.round(product.price)).toLocaleString()} &pi;
       </p>
 
       {/* Stock Left Information */}

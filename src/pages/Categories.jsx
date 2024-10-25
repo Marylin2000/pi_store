@@ -4,77 +4,73 @@ import { fetchFakeCategories, fetchProductsByCategory } from "../services/api";
 import ProductCard from "../components/ProductCard";
 import FakeCard from "../components/FakeCard";
 import { products } from "../constants/products";
-import Loader from "../components/Loader"; // Import your Loader component
+import Loader from "../components/Loader"; 
+import LocalCard from "../components/LocalCard";
 
 function Categories() {
   const { category } = useParams();
   const [product, setProduct] = useState([]);
   const [fake, setFake] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const fetchAllProducts = async () => {
+      setLoading(true);
+      
       try {
-        setLoading(true); // Start loading
-
-        // Fetch products by category
+        // Fetch real products and filter local ones
         const fetchedProducts = await fetchProductsByCategory(category);
-
-        // Filter local products based on the category
-        const filteredLocalProducts = products.filter((product) =>
-          product.category.toLowerCase().includes(category.toLowerCase())
+        const filteredLocalProducts = products.filter((item) =>
+          item.category.toLowerCase().includes(category.toLowerCase())
         );
 
-        // Combine local filtered products with fetched products
+        // Combine fetched and local products
         setProduct([...filteredLocalProducts, ...fetchedProducts]);
+
+        // Fetch fake products if category is "electronics"
+        if (category === "electronics") {
+          const fetchedFakeProducts = await fetchFakeCategories(category);
+          setFake(fetchedFakeProducts);
+        } else {
+          setFake([]); // Clear fake products when not in electronics
+        }
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false);
       }
     };
 
-    // Fetch fake products only for electronics category
-    if (category === "electronics") {
-      const getFakeProducts = async () => {
-        try {
-          setLoading(true); // Start loading
-          const fetchedFakeProducts = await fetchFakeCategories(category);
-          setFake(fetchedFakeProducts);
-        } catch (error) {
-          console.error("Error fetching fake products:", error);
-        } finally {
-          setLoading(false); // End loading
-        }
-      };
-      getFakeProducts();
-    } else {
-      setFake([]); // Clear the fake products when not in "electronics"
-      setLoading(false); // Stop loading if not fetching fake products
-    }
-
-    getProducts();
+    fetchAllProducts();
   }, [category]);
+
+  // Render function for real/local products
+  const renderProductGrid = (products, Component) => (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+      {products.map((item, index) => (
+        <Component key={index} product={item} />
+      ))}
+    </div>
+  );
 
   return (
     <main>
       <div className="p-4">
         {loading ? (
-          <Loader /> // Display loader while fetching data
-        ) : category !== "electronics" ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-            {product.map((item, index) => (
-              <ProductCard key={index} product={item} />
-            ))}
-            {console.log("Rendering real products")}
-          </div>
+          <Loader />
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-            {fake.map((product) => (
-              <FakeCard key={product.id} product={product} />
-            ))}
-            {console.log("Rendering fake products")}
-          </div>
+          <>
+            {/* Show fake products only for "electronics" */}
+            {category === "electronics" && renderProductGrid(fake, FakeCard)}
+
+            {/* Render real products for specific categories */}
+            {(category === "vehicle" || category === "mobile-accessories") &&
+              renderProductGrid(product, ProductCard)}
+
+            {/* Render local products for "Gaming" or "Computer" categories */}
+            {(category === "Gaming" || category === "Computer") &&
+              renderProductGrid(product, LocalCard)}
+          </>
         )}
       </div>
     </main>
