@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { FaSearch, FaQuestionCircle, FaBars, FaUserAlt } from 'react-icons/fa';
 import { MdShoppingCart } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/images/logo.jpg';
+import logo from '../assets/images/logo.webp';
 import SearchBar from './SearchBar';
 import CartContext from '../context/CartContext';
 import defaultPhoto from '../assets/images/user.png';
@@ -27,7 +27,7 @@ const Header = () => {
           </button>
           <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="Pi Store" className="w-10 h-10 rounded-full object-cover" />
-            <span className="font-bold text-lg">Pi Store</span>
+            <span className="font-bold text-lg">Pi Mart</span>
           </Link>
         </div>
 
