@@ -22,6 +22,7 @@ import LocalPage from "./pages/LocalPage";
 import Categories from "./pages/Categories";
 import Gaming from "./components/Gaming";
 import Help from "./pages/Help";
+import AddProductForm from "./pages/AddProduct";
 
 const App = () => {
   return (
@@ -51,6 +52,8 @@ const App = () => {
             <Route path="/gaming" element={<Gaming />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/products/:id" element={<FakeProductPage />} />
+            <Route path="/addProduct" element={<AddProductForm />} />
+
             <Route path="/item/:id" element={<LocalPage />} />
           </Routes>
         </main>

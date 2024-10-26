@@ -1,8 +1,8 @@
-// firebase.js
+// src/firebase.js
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore'; // Import Firestore
-import { getDatabase } from 'firebase/database'; // Import Realtime Database
+import { getDatabase } from 'firebase/database';
+import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -16,15 +16,15 @@ const firebaseConfig = {
     databaseURL: "https://josrant-1d3e8-default-rtdb.firebaseio.com/", // URL for Realtime Database
 };
 
-// Initialize Firebase
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firestore
-export const firestore = getFirestore(app); // Initialize Firestore and export it
+// Initialize Realtime Database and Storage
+export const db = getDatabase(app); // Realtime Database
+export const storage = getStorage(app); // Firebase Storage for image uploads
 
-// Initialize Realtime Database
-export const db = getDatabase(app); // Initialize Realtime Database and export it
-
-// Export authentication and Google provider
+// Initialize Authentication
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+export default app;
