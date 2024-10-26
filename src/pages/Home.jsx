@@ -60,6 +60,8 @@ const Home = () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
+        
+
       } catch (error) {
         setError(
           "Failed to load products. Please check your network connection."

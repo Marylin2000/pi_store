@@ -159,10 +159,11 @@ const ProductPage = () => {
 
         <div className="mt-4">
           <span className="text-2xl font-semibold text-orange-600">
-            {(Math.round(product.price) * 0.15).toLocaleString()} Pi
+          {Math.round((product.price * 0.02).toFixed(2))} Pi;
+
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
-            {(product.price * 0.5).toLocaleString()} Pi
+            {(product.price * 0.09)} Pi
           </span>
           <span className="text-sm text-green-600 ml-2">-23%</span>
         </div>
@@ -184,7 +185,7 @@ const ProductPage = () => {
         </div>
         <div className="bg-[#e74c3c] my-4 py-1 hover:bg-[#c0392b] flex items-center justify-center text-white font-bold rounded-md">
         <Link
-          to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}
+          to={`/payment/${Math.round((product.price*0.09+deliveryFee))}`}
          // Wrap in arrow function
         >
           Check Out

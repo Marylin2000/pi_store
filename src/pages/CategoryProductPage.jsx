@@ -28,7 +28,11 @@ const CategoryProductsPage = () => {
               className="w-full h-48 object-cover mb-4 rounded-lg" 
             />
             <h3 className="text-lg font-medium">{product.title}</h3>
-            <p className="text-gray-600">{product.price} Pi</p>
+        <p className="text-gray-600">
+        {Math.round((product.price * 0.09 ))} &pi;
+
+
+        </p>
           </Link>
         ))}
       </div>

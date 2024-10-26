@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration
@@ -19,11 +20,10 @@ const firebaseConfig = {
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
-// Initialize Realtime Database and Storage
+// Initialize Realtime Database, Firestore, Storage, and Auth
 export const db = getDatabase(app); // Realtime Database
+export const firestore = getFirestore(app); // Firestore
 export const storage = getStorage(app); // Firebase Storage for image uploads
-
-// Initialize Authentication
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 

@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 font-bold text-xs absolute top-2 right-2">
-        {Math.round((product.price * 0.09 ))} &pi;
+        {Math.round((product.price * 0.02 ))} &pi;
       </p>
 
       {/* Add to Cart Button */}
