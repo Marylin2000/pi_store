@@ -16,8 +16,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import CartPage from "./pages/Cart";
 import PaymentPage from "./pages/PaymentPage";
 import SearchResults from "./components/SearchResult";
-import FakeProductPage from "./pages/FakeProductPage";
-import LocalProducts from "./components/LocalProducts";
+import FakeProductPage from "./pages/FakeProductPage"
 import LocalPage from "./pages/LocalPage";
 import Categories from "./pages/Categories";
 import Gaming from "./components/Gaming";

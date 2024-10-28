@@ -175,61 +175,8 @@ import lgMonitorImage3 from "../assets/images/Tv/image3.jpg";
 // Additional products can be added similarly...
 
 export const products = [
-  {
-    id: 2,
-    title: "iPhone 12",
-    description: "Apple smartphone with A14 Bionic chip and 5G capability.",
-    price: 99,
 
-    discountPercentage: 8,
-    rating: 4.7,
-    stock: 200,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: iPhone12Image1,
-    images: [iPhone12Image2, iPhone12Image3, iPhone12Image4],
-  },
-  {
-    id: 3,
-    title: "iPhone 11",
-    description:
-      "Apple smartphone with dual-camera system and A13 Bionic chip.",
-    price: 699,
-    discountPercentage: 7,
-    rating: 4.6,
-    stock: 120,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: iPhone11Image1,
-    images: [iPhone11Image2, iPhone11Image2, iPhone11Image3],
-  },
-  {
-    id: 4,
-    title: "iPhone X",
-    description: "Apple smartphone with OLED display and Face ID technology.",
-    price: 50,
-    discountPercentage: 9.5,
-    rating: 4.5,
-    stock: 100,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: x1,
-    images: [x1, x2],
-  },
-  {
-    id: 5,
-    title: "iPhone XR",
-    description:
-      "Apple smartphone with Liquid Retina display and powerful A12 chip.",
-    price: 40,
-    discountPercentage: 10,
-    rating: 4.4,
-    stock: 140,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: xr1,
-    images: [xr1, xr2],
-  },
+  
 
   {
     id: 7,

@@ -9,11 +9,11 @@ import Loader from "../components/Loader";
 import { useUser } from "../context/UserContext";
 
 const deliveryFeesByContinent = {
-  Africa: 10,
-  Europe: 40,
-  Americas: 50,
-  Asia: 30,
-  Oceania: 35,
+  Africa:1,
+  Europe:4,
+  Americas:2,
+  Asia: 5,
+  Oceania: 3,
 };
 
 const ProductPage = () => {

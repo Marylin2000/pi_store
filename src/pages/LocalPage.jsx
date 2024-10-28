@@ -17,11 +17,11 @@ const LocalPage = () => {
   const [deliveryFee, setDeliveryFee] = useState(50);
 
   const deliveryFeesByContinent = {
-    Africa: 10,
-    Europe: 40,
-    Americas: 50,
-    Asia: 30,
-    Oceania: 35,
+    Africa:1,
+    Europe:4,
+    Americas:2,
+    Asia: 5,
+    Oceania: 3,
   };
 
   useEffect(() => {
@@ -142,10 +142,10 @@ const LocalPage = () => {
         </div>
         <div className="mt-4">
           <span className="text-2xl font-semibold text-orange-600">
-          {(Math.round(product.price) * 0.15).toLocaleString()} Pi
+          {(Math.round(product.price)).toLocaleString()} Pi
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
-            {(product.price * 0.5).toLocaleString()} Pi
+            {product.price.toLocaleString()} Pi
           </span>
           <span className="text-sm text-green-600 ml-2">-23%</span>
         </div>
