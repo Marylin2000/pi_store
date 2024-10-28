@@ -54,7 +54,6 @@ export async function fetchFireProducts() {
                     ...childSnapshot.val()
                 });
             });
-            console.log('Fetched products:', products);
             return products;
         } else {
             console.log('No products found');
