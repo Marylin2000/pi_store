@@ -11,7 +11,6 @@ const FakeCategories = ({ category }) => {
     const getProducts = async () => {
       const fetchedProducts = await fetchFakeCategories(category);
       setProducts(fetchedProducts);
-      console.log(category, products)
       setVisibleProducts(fetchedProducts.slice(0, 3)); // Initially show 3 products
     };
 
@@ -33,7 +32,7 @@ const FakeCategories = ({ category }) => {
           See More
         </Link>
       )}
-        </div>``
+        </div>
       
       {/* Horizontal Scroll Container */}
       <div className="flex overflow-x-auto space-x-4 no-scrollbar">

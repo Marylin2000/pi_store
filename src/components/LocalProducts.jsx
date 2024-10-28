@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { products } from "../constants/products";
 import LocalCard from "./LocalCard";
-import { fetchFireProducts } from "../services/productServices";
+import { fetchFireProducts } from "../services/productServices"; // Import the fetch function
 
 function LocalProducts() {
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Start listening to Firestore updates
-    const unsubscribe = fetchFireProducts((fetchedProducts) => {
-      setProduct([...products]);
+    // Fetch products from Realtime Database once on component mount
+    fetchFireProducts().then((fetchedProducts) => {
+      setProducts(fetchedProducts); // Update state with fetched data
     });
-
-    // Cleanup listener on unmount
-    return () => unsubscribe && unsubscribe();
   }, []);
 
   return (
     <main>
       <div className="grid grid-cols-2 ld:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-        {product.map((product) => (
+        {products.map((product) => (
           <LocalCard key={product.id} product={product} />
         ))}
       </div>
