@@ -6,6 +6,8 @@ import AddToCart from '../components/AddToCart';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Loader from '../components/Loader';
 import { products } from '../constants/products';
+import { fetchFireProductById } from '../services/productServices'; // Import fetch function
+
 const LocalPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -21,20 +23,22 @@ const LocalPage = () => {
     Asia: 30,
     Oceania: 35,
   };
-  
 
   useEffect(() => {
-    // Filter the product based on the ID from the products array
-    const foundProduct = products.find((product) => product.id === parseInt(id));
+    // Check if product exists in local array; if not, fetch from Firebase
+    const foundProduct = products.find((p) => p.id === parseInt(id));
     if (foundProduct) {
       setProduct(foundProduct);
       setImage(foundProduct.thumbnail);
+    } else {
+      fetchFireProductById(id).then((fetchedProduct) => {
+        if (fetchedProduct) {
+          setProduct(fetchedProduct);
+          setImage(fetchedProduct.thumbnail);
+        }
+      });
     }
   }, [id]);
-
-
-
-
 
   useEffect(() => {
     if (country) {
@@ -42,15 +46,14 @@ const LocalPage = () => {
     }
   }, [country]);
 
-
   const fetchContinentByCountry = async (countryName) => {
     try {
       const response = await fetch(
         `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
       );
       const data = await response.json();
-      const continent = data[0]?.continents[0]; // Get the continent name
-      const fee = deliveryFeesByContinent[continent] || 50; // Fallback to default fee
+      const continent = data[0]?.continents[0];
+      const fee = deliveryFeesByContinent[continent] || 50;
       setDeliveryFee(fee);
     } catch (error) {
       console.error("Error fetching continent:", error);
@@ -59,9 +62,6 @@ const LocalPage = () => {
 
   if (!product) return <div className="p-4"><Loader /></div>;
 
-
-
-  //Determine delivery day
   const calculateDeliveryDate = () => {
     const currentDate = new Date();
     const minDeliveryDays = 3;
@@ -75,19 +75,15 @@ const LocalPage = () => {
       month: "long",
     });
   };
+
   const handleRegionChange = (val) => {
     setRegion(val);
   };
-
-
-
-  if (!product) return <div className="p-4"><Loader /></div>;
 
   const handleImageClick = (e) => {
     const imageLink = e.target.src;
     setImage(imageLink);
   };
-
 
   const variants = {
     initial: { x: -100, opacity: 0 },
@@ -165,14 +161,11 @@ const LocalPage = () => {
           </div>
         </div>
         <div className="bg-orange-500 my-4 py-1 flex items-center justify-center text-white font-bold rounded-md">
-        <Link
-          to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}
-         // Wrap in arrow function
-        >
+        <Link to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}>
           Check Out
         </Link>
         </div>
-          <AddToCart product={product} />
+        <AddToCart product={product} />
       </div>
 
       <div className="bg-white shadow-md p-4 lg:col-span-1">

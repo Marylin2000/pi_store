@@ -79,3 +79,20 @@ export function subscribeToProducts(onProductsChange) {
         onProductsChange(products);
     });
 }
+
+export async function fetchFireProductById(productId) {
+    try {
+        const productRef = ref(db, `products/${productId}`);
+        const snapshot = await get(productRef);
+
+        if (snapshot.exists()) {
+            return { id: productId, ...snapshot.val() }; // Return the product with its ID
+        } else {
+            console.log('No product found with this ID');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching product by ID:', error);
+        return null;
+    }
+}

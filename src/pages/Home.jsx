@@ -172,7 +172,7 @@ const Home = () => {
       <div className="flex items-center p-2 my-2 bg-grad_6 w-full justify-between rounded-md">
         <h2 className="text-xl font-semibold text-white capitalize">More</h2>
       </div>
-      <FakeProducts />d
+      <FakeProducts />
       <FakeCategories category={"electronics"} product={"Smart Watches"} />
       <BannerCard image={smartWatch} product={"smart Watches"}  color={"1"} />
       <LocalProducts />
