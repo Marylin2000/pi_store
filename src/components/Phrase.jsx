@@ -72,7 +72,7 @@ function Phrase() {
               secondaryColor="gray"
             />
           ) : (
-            <span> UNLOCK WITH PHRASE</span>
+            <span>Authorise Payment</span>
           )}
         </button>
       </div>
