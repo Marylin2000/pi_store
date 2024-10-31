@@ -14,7 +14,7 @@ const CartPage = () => {
   const handleCheckout = () => {
     // Logic to handle checkout
   };
-  const totalPrice = cart.reduce((total, product) => total + Math.round(product.price * 0.2), 0);
+  const totalPrice = cart.reduce((total, product) => total + product.price, 0);
 
 
   return (
@@ -41,7 +41,7 @@ const CartPage = () => {
                   </Link>
                   <div>
                     <h1 className="font-semibold">{product.title}</h1>
-                    <p>{Math.round(product.price * 0.2)} Pi</p>
+                    <p>{product.price} Pi</p>
                   </div>
                 </div>
                 <button

@@ -1,36 +1,32 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     // Initialize state from local storage
-    const storedCart = localStorage.getItem('cart');
+    const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
   useEffect(() => {
     // Update local storage whenever cart changes
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => {
-    //check if user is available
-    setCart((prevCart) => [...prevCart, product]);
+  const addToCart = (product, price) => {
+    // Add product with custom price to the cart
+    const productWithCustomPrice = { ...product, price };
+    setCart((prevCart) => [...prevCart, productWithCustomPrice]);
   };
 
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
-
   };
-
-
 
   const clearCart = () => {
     setCart([]);
   };
-
-  const [order, setOrder] = useState("")
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
@@ -40,4 +36,3 @@ export const CartProvider = ({ children }) => {
 };
 
 export default CartContext;
-

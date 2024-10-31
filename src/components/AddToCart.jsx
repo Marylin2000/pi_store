@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import CartContext from "../context/CartContext"; // Correct import
+import CartContext from "../context/CartContext";
 import { FiShoppingCart } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useUser } from "../context/UserContext";
-import { MdAddShoppingCart } from "react-icons/md";
 
-function AddToCart({ product }) {
+function AddToCart({ product, price }) {
   const { cart, addToCart } = useContext(CartContext);
   const { user } = useUser();
-  const handleAddToCart = (product) => {
+
+  const handleAddToCart = (product, price) => {
     if (!user) {
       toast.error("Please log in to add items to your cart.", {
         style: {
@@ -18,7 +18,6 @@ function AddToCart({ product }) {
       });
       return;
     }
-    <AddToCart product={product} />
 
     const productExists = cart.some((item) => item.id === product.id);
     if (productExists) {
@@ -29,11 +28,10 @@ function AddToCart({ product }) {
         },
       });
       return;
-    }      <AddToCart product={product} />
+    }
 
-
-    // Add product to cart
-    addToCart(product);
+    // Add product to cart with custom price
+    addToCart(product, price);
 
     // Success toast notification
     toast.success(`Added "${product.title}" to cart`, {
@@ -42,12 +40,12 @@ function AddToCart({ product }) {
         color: "#fff",
       },
     });
-    console.log(`Added "${product.title}" to cart`);
+    console.log(`Added "${product.title}" with price ${price} to cart`);
   };
 
   return (
     <button
-      onClick={() => handleAddToCart(product)} // Wrap in arrow function
+      onClick={() => handleAddToCart(product, price)} // Pass price
       className="mt-3 bg-[#f39c12] text-white text-xs py-2 px-4 rounded-md hover:bg-indigo-600 w-fit focus:outline-none focus:ring-2 focus:ring-indigo-500"
     >
       Add to cart

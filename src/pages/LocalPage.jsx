@@ -16,6 +16,7 @@ const LocalPage = () => {
   const [region, setRegion] = useState('');
   const [deliveryFee, setDeliveryFee] = useState(50);
 
+
   const deliveryFeesByContinent = {
     Africa:1,
     Europe:4,
@@ -161,11 +162,11 @@ const LocalPage = () => {
           </div>
         </div>
         <div className="bg-orange-500 my-4 py-1 flex items-center justify-center text-white font-bold rounded-md">
-        <Link to={`/payment/${Math.round((product.price*0.15)+deliveryFee)}`}>
+        <Link to={`/payment/${Math.round((product.price)+deliveryFee)}`}>
           Check Out
         </Link>
         </div>
-        <AddToCart product={product} />
+        <AddToCart product={product} price={product.price} />
       </div>
 
       <div className="bg-white shadow-md p-4 lg:col-span-1">

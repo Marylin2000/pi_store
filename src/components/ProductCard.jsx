@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AddToCart from "./AddToCart";
 
 const ProductCard = ({ product }) => {
+  const price = Math.round(product.price * 0.02);
   return (
     <div className="p-4 bg-[#e3ecf5] cursor-pointer h-fit relative rounded-lg shadow-sm flex flex-col items-center hover:shadow-lg transition-all duration-300 ease-in-out">
       {/* Product Image */}
@@ -23,12 +24,12 @@ const ProductCard = ({ product }) => {
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 font-bold text-xs absolute top-2 right-2">
-        {Math.round((product.price * 0.02 ))} &pi;
+        {price} Pi
       </p>
 
       {/* Add to Cart Button */}
       <div className="mt-4">
-        <AddToCart product={product} />
+        <AddToCart product={product} price={price} />
       </div>
     </div>
   );

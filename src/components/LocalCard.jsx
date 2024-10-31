@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AddToCart from "./AddToCart";
 
 const LocalCard = ({ product }) => {
+  const price =  Math.round(product.price)
   return (
     <div className="py-2 bg-[#e3ecf5] cursor-pointer h-fit lg:h-[250px]  relative rounded-md flex flex-col items-center  hover:shadow-lg ">
       <Link to={`/item/${product.id}`}>
@@ -19,11 +20,11 @@ const LocalCard = ({ product }) => {
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 top-0 font-bold right-4 absolute text-xs">
-        {(Math.round(product.price)).toLocaleString()} &pi;
+       {price} Pi
       </p>
 
       {/* Stock Left Information */}
-      <AddToCart product={product} />
+      <AddToCart product={product} price={price} />
     </div>
   );
 };

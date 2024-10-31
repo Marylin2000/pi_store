@@ -22,6 +22,8 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [image, setImage] = useState("");
   const [country, setCountry] = useState("");
+  const [price, setPrice] = useState();
+
   const [region, setRegion] = useState("");
   const [deliveryFee, setDeliveryFee] = useState(50); // Default delivery fee
 
@@ -31,6 +33,7 @@ const ProductPage = () => {
         const data = await fetchProductById(id);
         setProduct(data);
         setImage(data.thumbnail); // Set the initial main image
+        setPrice(Math.round((data.price * 0.02).toFixed(2)))
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -159,7 +162,7 @@ const ProductPage = () => {
 
         <div className="mt-4">
           <span className="text-2xl font-semibold text-orange-600">
-          {Math.round((product.price * 0.02).toFixed(2))} Pi;
+         {price } Pi
 
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
@@ -185,14 +188,14 @@ const ProductPage = () => {
         </div>
         <div className="bg-[#e74c3c] my-4 py-1 hover:bg-[#c0392b] flex items-center justify-center text-white font-bold rounded-md">
         <Link
-          to={`/payment/${Math.round((product.price*0.09+deliveryFee))}`}
+          to={`/payment/${Math.round((price+deliveryFee))}`}
          // Wrap in arrow function
         >
           Check Out
         </Link>
         </div>
 
-        <AddToCart product={product} />
+        <AddToCart product={product} price={price} />
         
 
         <div className="mt-6">

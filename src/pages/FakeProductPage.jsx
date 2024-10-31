@@ -15,6 +15,7 @@ const FakeProductPage = () => {
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
   const [deliveryFee, setDeliveryFee] = useState(50); 
+  const [price, setPrice] =useState()
 
   const deliveryFeesByContinent = {
     Africa:1,
@@ -30,6 +31,7 @@ const FakeProductPage = () => {
         const data = await fetchFakeProductById(id);
         setProduct(data);
         setImage(data.thumbnail); // Set the initial main image
+        setPrice((Math.round(data.price) * 0.15).toLocaleString())
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -157,7 +159,7 @@ const FakeProductPage = () => {
             {(product.price * 0.5).toLocaleString()} Pi
           </span>
           <span className="line-through text-gray-400 text-sm ml-2">
-          {(Math.round(product.price) * 0.15).toLocaleString()} Pi
+          {price} Pi
           </span>
           <span className="text-sm text-green-600 ml-2">-23%</span>
         </div>
@@ -186,7 +188,7 @@ const FakeProductPage = () => {
         </div>
 
         {/* Add to Cart Button */}
-          <AddToCart product={product} />
+          <AddToCart product={product} price={price} />
 
         {/* Promotions */}
         <div className="mt-6">
