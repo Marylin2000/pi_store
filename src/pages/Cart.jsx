@@ -36,11 +36,12 @@ const CartPage = () => {
                 className="flex justify-between items-center border p-4 rounded-lg"
               >
                 <div className="flex gap-2">
-                  <Link to={`/product/${product.id}`}>
+
+                  <Link to={`${product.name?`/item/${product.id}`:product.image?`/products/${product.id}`:product.discountPercentage?`/product/${product.id}`:`/item/${product.id}`}`}>
                     <img src={product.thumbnail} alt="image" width={50} />
                   </Link>
                   <div>
-                    <h1 className="font-semibold">{product.title}</h1>
+                    <h1 className="font-semibold">{product.title || product.name}</h1>
                     <p>{product.price} Pi</p>
                   </div>
                 </div>

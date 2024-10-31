@@ -198,15 +198,24 @@ const PaymentPage = () => {
 
   if (!user) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p>Please login to place your order.</p>
-        <button
-          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => {/* Implement login */}}
-        >
-          Login
-        </button>
-      </div>
+      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full text-center">
+          <h1 className="text-3xl font-semibold mb-4 text-gray-800">User Profile</h1>
+          <p className="text-gray-600 mb-6">You are not logged in</p>
+          <div className="flex justify-center space-x-4">
+            <a
+              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+              href="/login"
+            >
+              Login
+            </a>
+            <a
+              className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+              href="/signup"
+            >
+              Sign Up
+            </a>
+          </div>
+        </div>
     );
   }
 
