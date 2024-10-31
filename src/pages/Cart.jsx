@@ -38,7 +38,7 @@ const CartPage = () => {
                 <div className="flex gap-2">
 
                   <Link to={`${product.name?`/item/${product.id}`:product.image?`/products/${product.id}`:product.discountPercentage?`/product/${product.id}`:`/item/${product.id}`}`}>
-                    <img src={product.thumbnail} alt="image" width={50} />
+                    <img src={product.thumbnail || product.image} alt="image" width={50} />
                   </Link>
                   <div>
                     <h1 className="font-semibold">{product.title || product.name}</h1>
