@@ -16,7 +16,7 @@ const LocalCard = ({ product }) => {
       </Link>
 
       {/* Product Title (Smaller and not bold) */}
-      <h2 className="mt-2 text-xs ">{product.title}</h2>
+      <h2 className="mt-2 text-xs ">{product.title || product.name}</h2>
 
       {/* Product Price */}
       <p className="mt-1 text-green-600 top-0 font-bold right-4 absolute text-xs">
