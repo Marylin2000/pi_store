@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../firebase"; // Import Firebase auth and provider
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-const AuthForm = ({ type, onSubmit }) => {
+const AuthForm = ({ type, onSubmit, error }) => { // Accept error as a prop
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +10,8 @@ const AuthForm = ({ type, onSubmit }) => {
     terms: false,
     showPassword: false,
   });
+
+  const [localError, setLocalError] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type: inputType, checked } = e.target;
@@ -30,15 +30,11 @@ const AuthForm = ({ type, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      const userCredential = await signInWithPopup(auth, googleProvider);
-      console.log("Google login successful:", userCredential.user);
-    } catch (error) {
-      console.error("Google login error:", error.message);
+    if (formData.password.length < 6) {
+      setLocalError("Password must be at least 6 characters long.");
+    } else {
+      setLocalError("");
+      onSubmit(formData);
     }
   };
 
@@ -92,27 +88,20 @@ const AuthForm = ({ type, onSubmit }) => {
             </div>
             <button
               type="button"
-              className="absolute  flex right-3 top-[58%] text-sm text-gray-500"
+              className="absolute flex right-3 top-[58%] text-sm text-gray-500"
               onClick={toggleShowPassword}
             >
               <span>{formData.showPassword ? <IoMdEye size={25} /> : <IoMdEyeOff size={25} />}</span>
             </button>
           </div>
 
-          {type === "signup" && (
-            <div className="mb-4 flex items-center">
-              <input
-                type="checkbox"
-                name="terms"
-                checked={formData.terms}
-                onChange={handleChange}
-                className="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                required
-              />
-              <label className="text-gray-700">
-                I agree to the terms and conditions
-              </label>
-            </div>
+          {/* Display the passed error message */}
+          {error && (
+            <p className="text-red-500 text-sm mb-2">{error}</p>
+          )}
+          
+          {localError && (
+            <p className="text-red-500 text-sm mb-2">{localError}</p>
           )}
 
           <button
@@ -122,15 +111,6 @@ const AuthForm = ({ type, onSubmit }) => {
             {type === "login" ? "Login" : "Sign Up"}
           </button>
         </form>
-
-        <div className="my-4 flex items-center justify-center">
-          <button
-            onClick={handleGoogleLogin}
-            className="flex items-center justify-center w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-          >
-            {type === "login" ? "Login with Google" : "Sign Up with Google"}
-          </button>
-        </div>
 
         <div className="mt-4 text-center">
           {type === "login" ? (
