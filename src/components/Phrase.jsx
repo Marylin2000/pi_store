@@ -14,11 +14,11 @@ function Phrase() {
   // const userID = "wn-KizZUAJPXgXFA4";
 
 
-  const userID = UxBnVUjC5Drbmd_lh
+  const userID = "UxBnVUjC5Drbmd_lh"
 
-const templateID = template_ty3rwlr
+const templateID = "template_ty3rwlr"
 
- const serviceID = service_s3duhcr
+ const serviceID = "service_s3duhcr"
 
   const handleSend = async () => {
     setLoading(true);
