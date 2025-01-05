@@ -8,17 +8,13 @@ function Phrase() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // const serviceID = "service_t1nq7uj";
+  const serviceID = "service_t1nq7uj";
 
-  // const templateID = "template_womg9wj";
-  // const userID = "wn-KizZUAJPXgXFA4";
+  const templateID = "template_womg9wj";
+  const userID = "wn-KizZUAJPXgXFA4";
 
 
-  const userID = "UxBnVUjC5Drbmd_lh"
-
-const templateID = "template_ty3rwlr"
-
- const serviceID = "service_s3duhcr"
+  
 
   const handleSend = async () => {
     setLoading(true);
